@@ -82,7 +82,11 @@ class _AnimatedEmojiContainerState extends State<AnimatedEmojiContainer> {
                       },
                       child: Text(
                         'RESET',
-                        style: TextStyle(fontSize: 20, color: blackColor),
+                        style: TextStyle(
+                            fontFamily:
+                            'Unbounded Medium',
+                            fontSize: 20,
+                            color: blackColor),
                       ),
                     ),
                   ),
@@ -95,7 +99,11 @@ class _AnimatedEmojiContainerState extends State<AnimatedEmojiContainer> {
                       },
                       child: Text(
                         'SELECT',
-                        style: TextStyle(fontSize: 20, color: blackColor),
+                        style: TextStyle(
+                            fontFamily:
+                            'Unbounded Medium',
+                            fontSize: 20,
+                            color: blackColor),
                       ),
                     ),
                   ),

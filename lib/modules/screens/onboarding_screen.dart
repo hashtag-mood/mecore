@@ -54,8 +54,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     try {
                       if (kIsWeb) {
                         await signInWithTwitter(context);
-                      } else if (Platform.isMacOS) {
-                        ?
                       } else {
                         await signInWithTwitter(context);
                       }

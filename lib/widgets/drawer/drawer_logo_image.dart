@@ -9,7 +9,7 @@ class DrawerLogoImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Image(
-        image: AssetImage('assets/img/logo.png'),
+        image: AssetImage('assets/image/logo.png'),
         width: appbarLength(context) * 3,
       ),
       height: appbarLength(context) - 1,

@@ -136,10 +136,10 @@ class CupertinoMonthYearPicker {
                               child: Text(
                                 'TODAY',
                                 style: TextStyle(
-                                  fontFamily: 'Interop Regular',
-                                  color: blackColor,
-                                  fontSize: 16,
-                                ),
+                                    fontFamily:
+                                    'Unbounded Medium',
+                                    fontSize: 20,
+                                    color: blackColor),
                               ),
                               onPressed: () {
                                 context
@@ -162,10 +162,10 @@ class CupertinoMonthYearPicker {
                             child: Text(
                               'DONE',
                               style: TextStyle(
-                                fontFamily: 'Interop Regular',
-                                color: blackColor,
-                                fontSize: 16,
-                              ),
+                                  fontFamily:
+                                  'Unbounded Medium',
+                                  fontSize: 20,
+                                  color: blackColor),
                             ),
                             onPressed: () {
                               context.pop();

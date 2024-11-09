@@ -193,7 +193,7 @@ class _TodayScreenBodyState extends State<TodayScreenBody> {
                     ),
                   ),
                   child: Image(
-                    image: AssetImage('assets/img/album_cover.jpg'),
+                    image: AssetImage('assets/image/album_cover.jpg'),
                     fit: BoxFit.cover,
                   ),
                 ),

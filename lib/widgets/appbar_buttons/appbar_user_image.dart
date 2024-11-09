@@ -15,7 +15,8 @@ class AppbarUserImage extends StatelessWidget {
           ),
         ),
         child: Image.asset(
-          'assets/img/user_image.jpg',
+          'assets/image/mecore_logo.png',
+          // 'assets/image/user_image.jpg',
           alignment: Alignment.center,
           fit: BoxFit.cover,
         ),

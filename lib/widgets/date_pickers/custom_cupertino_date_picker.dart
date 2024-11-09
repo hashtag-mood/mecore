@@ -167,10 +167,10 @@ class CustomCupertinoDatePicker {
                             child: Text(
                               'TODAY',
                               style: TextStyle(
-                                fontFamily: 'Interop Regular',
-                                color: blackColor,
-                                fontSize: 20,
-                              ),
+                                  fontFamily:
+                                  'Unbounded Medium',
+                                  fontSize: 20,
+                                  color: blackColor),
                             ),
                             onPressed: () {
                               context
@@ -195,10 +195,10 @@ class CustomCupertinoDatePicker {
                             child: Text(
                               'DONE',
                               style: TextStyle(
-                                fontFamily: 'Interop Regular',
-                                color: blackColor,
-                                fontSize: 20,
-                              ),
+                                  fontFamily:
+                                  'Unbounded Medium',
+                                  fontSize: 20,
+                                  color: blackColor),
                             ),
                             onPressed: () {
                               context.pop();

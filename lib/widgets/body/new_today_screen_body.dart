@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:marquee/marquee.dart';
 import 'package:mecore/config/themes/color_picker_theme_data.dart';
 import 'package:mecore/constants/colors.dart';
 import 'package:mecore/constants/lengths.dart';
@@ -116,6 +117,8 @@ class _NewTodayScreenBodyState extends State<NewTodayScreenBody> {
                                               child: Text(
                                                 'RESET',
                                                 style: TextStyle(
+                                                    fontFamily:
+                                                    'Unbounded Medium',
                                                     fontSize: 20,
                                                     color: blackColor),
                                               ),
@@ -131,6 +134,8 @@ class _NewTodayScreenBodyState extends State<NewTodayScreenBody> {
                                               child: Text(
                                                 'SELECT',
                                                 style: TextStyle(
+                                                    fontFamily:
+                                                    'Unbounded Medium',
                                                     fontSize: 20,
                                                     color: blackColor),
                                               ),
@@ -253,6 +258,8 @@ class _NewTodayScreenBodyState extends State<NewTodayScreenBody> {
                                                 child: Text(
                                                   'RESET',
                                                   style: TextStyle(
+                                                      fontFamily:
+                                                      'Unbounded Medium',
                                                       fontSize: 20,
                                                       color: blackColor),
                                                 ),
@@ -277,6 +284,8 @@ class _NewTodayScreenBodyState extends State<NewTodayScreenBody> {
                                                 child: Text(
                                                   'SELECT',
                                                   style: TextStyle(
+                                                      fontFamily:
+                                                      'Unbounded Medium',
                                                       fontSize: 20,
                                                       color: blackColor),
                                                 ),
@@ -296,24 +305,30 @@ class _NewTodayScreenBodyState extends State<NewTodayScreenBody> {
                             ),
                             child: (state.completeText ==
                                     '') // (textMarqueeEditingController.text.isEmpty)
-                                ?
-                                TextMarquee(
-                                        state.placeholderText,
-                                        // textMarqueeEditingController.text,
-                                        delay: Duration(seconds: 0),
-                                        spaceSize: 6,
-                                        style: TextStyle(
-                                            fontSize: 19, color: textSilverColor),
-                                      )
-                                :
-                            TextMarquee(
-                                    state.completeText,
-                                    // completeText,
-                                    delay: Duration(seconds: 0),
-                                    spaceSize: 6,
-                                    style: TextStyle(
-                                        fontSize: 19, color: blackColor),
-                                  ),
+                                ? Marquee(text: state.placeholderText, style: TextStyle(fontSize: 19, color: textSilverColor), blankSpace: 5, velocity: 45)
+                                // Align(
+                                //   alignment: Alignment.centerLeft,
+                                //   child: TextMarquee(
+                                //           state.placeholderText,
+                                //           // textMarqueeEditingController.text,
+                                //           delay: Duration(seconds: 0),
+                                //           spaceSize: 6,
+                                //           style: TextStyle(
+                                //               fontSize: 19, color: textSilverColor),
+                                //         ),
+                                // )
+                                : Marquee(text: state.completeText, style: TextStyle(fontSize: 19, color: blackColor), blankSpace: 5, velocity: 45)
+                            // Align(
+                            //   alignment: Alignment.centerLeft,
+                            //   child: TextMarquee(
+                            //           state.completeText,
+                            //           // completeText,
+                            //           delay: Duration(seconds: 0),
+                            //           spaceSize: 6,
+                            //           style: TextStyle(
+                            //               fontSize: 19, color: blackColor),
+                            //         ),
+                            // ),
                             // SingleChildScrollView(
                             //   scrollDirection: Axis.horizontal,
                             //   child: Text(
@@ -478,10 +493,13 @@ class _NewTodayScreenBodyState extends State<NewTodayScreenBody> {
                                                         everyColors().length,
                                                     itemBuilder:
                                                         (context, index) {
-                                                      return GestureDetector(
-                                                        onTap: () {},
-                                                        child: AspectRatio(
-                                                          aspectRatio: 1,
+                                                      return AspectRatio(
+                                                        aspectRatio: 1,
+                                                        child: GestureDetector(
+                                                          onTap: () {
+                                                            context.read<HalfHourColorCellsCubit>().isSwitched();
+                                                            context.read<HalfHourColorCellsCubit>().selectColor(color: everyColors()[index]);
+                                                            },
                                                           child: Container(
                                                             decoration:
                                                                 BoxDecoration(
@@ -493,9 +511,11 @@ class _NewTodayScreenBodyState extends State<NewTodayScreenBody> {
                                                                       blackColor,
                                                                   width: 1),
                                                             ),
-                                                            child: Icon(
+                                                            child: (state.isSelected) ? Icon(
                                                                 CupertinoIcons
-                                                                    .checkmark),
+                                                                    .checkmark) : Icon(
+                                                                CupertinoIcons
+                                                                    .add),
                                                           ),
                                                         ),
                                                       );

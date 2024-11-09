@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mecore/modules/screens/journal_screen.dart';
@@ -10,16 +11,16 @@ import 'package:mecore/modules/screens/today_screen.dart';
 import 'package:mecore/widgets/custom_bottom_navigation_bar.dart';
 
 final GlobalKey<NavigatorState> _todayNavigatorKey =
-GlobalKey<NavigatorState>();
+    GlobalKey<NavigatorState>();
 final GlobalKey<NavigatorState> _calendarNavigatorKey =
-GlobalKey<NavigatorState>();
+    GlobalKey<NavigatorState>();
 final GlobalKey<NavigatorState> _journalNavigatorKey =
-GlobalKey<NavigatorState>();
+    GlobalKey<NavigatorState>();
 final GlobalKey<NavigatorState> _settingNavigatorKey =
-GlobalKey<NavigatorState>();
+    GlobalKey<NavigatorState>();
 
 final _router = GoRouter(
-  initialLocation: '/onboarding',
+  initialLocation: (FirebaseAuth.instance.currentUser == null) ? '/onboarding' : '/today',
   routes: [
     GoRoute(
       path: '/onboarding',
