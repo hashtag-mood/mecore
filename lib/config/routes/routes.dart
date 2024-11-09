@@ -20,7 +20,7 @@ final GlobalKey<NavigatorState> _settingNavigatorKey =
     GlobalKey<NavigatorState>();
 
 final _router = GoRouter(
-  initialLocation: (FirebaseAuth.instance.currentUser == null) ? '/onboarding' : '/today',
+  initialLocation: '/today', // (FirebaseAuth.instance.currentUser == null) ? '/onboarding' : '/today',
   routes: [
     GoRoute(
       path: '/onboarding',
