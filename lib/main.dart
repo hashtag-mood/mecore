@@ -7,7 +7,7 @@ import 'package:mecore/config/routes/routes.dart';
 import 'package:mecore/firebase_options.dart';
 import 'package:mecore/modules/bloc/date_cubit.dart';
 import 'package:mecore/modules/bloc/half_hour_color_cells_cubit.dart';
-import 'package:mecore/modules/bloc/text_marquee_cubit.dart';
+import 'package:mecore/modules/bloc/single_line_text_cubit.dart';
 import 'package:mecore/modules/bloc/weather_icon_cubit.dart';
 
 void main() async {
@@ -35,7 +35,7 @@ class mecore extends StatelessWidget {
           create: (context) => HalfHourColorCellsCubit(),
         ),
         BlocProvider(
-          create: (context) => TextMarqueeCubit(),
+          create: (context) => SingleLineTextCubit(),
         ),
       ],
       child: MaterialApp.router(

@@ -3,7 +3,6 @@ import 'package:mecore/constants/colors.dart';
 
 class HalfHourColorCells {
   Color? selectedColor;
-  bool isSelected = false;
-
-  HalfHourColorCells({required this.selectedColor, required this.isSelected});
+  bool isColorSelected = false;
+  HalfHourColorCells({required this.selectedColor, required this.isColorSelected});
 }

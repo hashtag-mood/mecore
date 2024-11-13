@@ -4,7 +4,7 @@ import 'package:mecore/constants/colors.dart';
 import 'package:mecore/constants/lengths.dart';
 import 'package:mecore/constants/widgets.dart';
 import 'package:mecore/modules/screens/calendar_screen.dart';
-import 'package:mecore/modules/screens/today_screen.dart';
+import 'package:mecore/modules/screens/today/today_screen.dart';
 import 'package:mecore/widgets/drawer/drawer_divider.dart';
 import 'package:mecore/widgets/drawer/drawer_list_tile.dart';
 import 'package:mecore/widgets/drawer/drawer_logo_image.dart';

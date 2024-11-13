@@ -15,3 +15,7 @@ double musicContainerHeight(BuildContext context) {
 double drawerWidth(BuildContext context) {
   return appbarLength(context) * 5;
 }
+
+double halfHourColorCellHeight(BuildContext context) {
+  return appbarLength(context) * 1.6 * 1 / 2;
+}

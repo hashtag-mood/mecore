@@ -8,7 +8,7 @@
 PRODUCT_NAME = mecore
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.hashtagmood.mecore
+PRODUCT_BUNDLE_IDENTIFIER = com.hyoeunlee.mecore
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2024 com.hashtagmood.mecore. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2024 com.hyoeunlee.mecore. All rights reserved.

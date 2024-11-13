@@ -13,16 +13,16 @@ import 'package:mecore/utils/hour_text.dart';
 import 'package:mecore/widgets/containers/animated_emoji_container.dart';
 import 'package:mecore/widgets/containers/weather_icon_container.dart';
 
-class TodayScreenBody extends StatefulWidget {
-  const TodayScreenBody({
+class OldTodayScreenBody extends StatefulWidget {
+  const OldTodayScreenBody({
     super.key,
   });
 
   @override
-  State<TodayScreenBody> createState() => _TodayScreenBodyState();
+  State<OldTodayScreenBody> createState() => _OldTodayScreenBodyState();
 }
 
-class _TodayScreenBodyState extends State<TodayScreenBody> {
+class _OldTodayScreenBodyState extends State<OldTodayScreenBody> {
   @override
   Widget build(BuildContext context) {
     return ClipRect(

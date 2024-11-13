@@ -64,7 +64,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '433607737949',
     projectId: 'mecore-ab466',
     storageBucket: 'mecore-ab466.firebasestorage.app',
-    iosBundleId: 'com.hashtagmood.mecore',
+    iosBundleId: 'com.hyoeunlee.mecore',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
@@ -73,7 +73,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '433607737949',
     projectId: 'mecore-ab466',
     storageBucket: 'mecore-ab466.firebasestorage.app',
-    iosBundleId: 'com.hashtagmood.mecore',
+    iosBundleId: 'com.hyoeunlee.mecore',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(

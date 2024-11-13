@@ -5,9 +5,8 @@ import 'package:mecore/widgets/body/journal_screen_body.dart';
 
 class JournalScreen extends StatelessWidget {
   final String? recordPath;
-  final String? searchPath;
 
-  const JournalScreen({super.key, this.recordPath, this.searchPath});
+  const JournalScreen({super.key, this.recordPath});
 
   @override
   Widget build(BuildContext context) {

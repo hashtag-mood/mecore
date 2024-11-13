@@ -1,13 +1,11 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mecore/modules/screens/journal_screen.dart';
 import 'package:mecore/modules/screens/onboarding_screen.dart';
-import 'package:mecore/modules/screens/search_screen.dart';
 import 'package:mecore/modules/screens/setting_screen.dart';
 import 'package:mecore/modules/screens/today_edit_screen.dart';
 import 'package:mecore/modules/screens/today_record_screen.dart';
-import 'package:mecore/modules/screens/today_screen.dart';
+import 'package:mecore/modules/screens/today/today_screen.dart';
 import 'package:mecore/widgets/custom_bottom_navigation_bar.dart';
 
 final GlobalKey<NavigatorState> _todayNavigatorKey =
@@ -51,7 +49,6 @@ final _router = GoRouter(
               builder: (context, state) => TodayScreen(
                 recordPath: '/record',
                 editPath: '/edit',
-                searchPath: '/search',
               ),
               routes: [
                 GoRoute(
@@ -61,10 +58,6 @@ final _router = GoRouter(
                 GoRoute(
                   path: 'record',
                   builder: (context, state) => TodayRecordScreen(),
-                ),
-                GoRoute(
-                  path: 'search',
-                  builder: (context, state) => SearchScreen(),
                 ),
               ],
             ),
@@ -96,16 +89,11 @@ final _router = GoRouter(
               path: '/journal',
               builder: (context, state) => JournalScreen(
                 recordPath: '/record',
-                searchPath: '/search',
               ),
               routes: [
                 GoRoute(
                   path: 'record',
                   builder: (context, state) => TodayRecordScreen(),
-                ),
-                GoRoute(
-                  path: 'search',
-                  builder: (context, state) => SearchScreen(),
                 ),
               ],
             ),
