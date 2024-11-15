@@ -1,19 +1,19 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mecore/config/routes/routes.dart';
 
-Future<void> signInWithTwitter(BuildContext context) async {
-  TwitterAuthProvider twitterProvider = TwitterAuthProvider();
+Future<void> signInWithApple(BuildContext context) async {
+  final appleProvider = AppleAuthProvider();
   UserCredential userCredential;
-
   try {
     if (kIsWeb) {
       userCredential =
-          await FirebaseAuth.instance.signInWithPopup(twitterProvider);
+          await FirebaseAuth.instance.signInWithPopup(appleProvider);
     } else {
       userCredential =
-          await FirebaseAuth.instance.signInWithProvider(twitterProvider);
+          await FirebaseAuth.instance.signInWithProvider(appleProvider);
     }
 
     if (userCredential.user != null) {

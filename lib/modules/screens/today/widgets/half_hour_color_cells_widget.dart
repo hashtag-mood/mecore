@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mecore/config/themes/color_picker_theme_data.dart';
+import 'package:mecore/constants/collections.dart';
 import 'package:mecore/constants/colors.dart';
 import 'package:mecore/constants/lengths.dart';
 import 'package:mecore/constants/widgets.dart';
 import 'package:mecore/modules/bloc/half_hour_color_cells_cubit.dart';
 import 'package:mecore/modules/models/half_hour_color_cells.dart';
-import 'package:mecore/utils/color_cells_index.dart';
 
 class HalfHourColorCellsWidget extends StatelessWidget {
   HalfHourColorCellsWidget({super.key});
@@ -25,9 +25,16 @@ class HalfHourColorCellsWidget extends StatelessWidget {
         return Column(
           children: List.generate(
             48,
-                (index) {
-              if(state.selectedColor != null && startIndex != null && endIndex != null) {
-                ?
+            (index) {
+              final cellIndex = index;
+              if (state.selectedColor != null &&
+                  startIndex != null &&
+                  endIndex != null) {
+                for (int i = 0; i < 48; i++) {
+                  if (startIndex! <= i && i <= endIndex!) {
+                    selectedColors[i] = state.selectedColor!;
+                  }
+                }
               }
               return Align(
                 alignment: Alignment.centerLeft,
@@ -36,12 +43,12 @@ class HalfHourColorCellsWidget extends StatelessWidget {
                   width: appbarLength(context) * 2 / 3,
                   // appbarLength(context) * 0.65,
                   decoration: BoxDecoration(
-                    color: (state.selectedColor != null) ? (startIndex! <= index && index <= endIndex!) ? state.selectedColor : backgroundColor : backgroundColor,
+                    color: (selectedColors.containsKey(index))
+                        ? selectedColors[index]
+                        : backgroundColor,
                     border: Border(
                       right: mainBorderSide,
-                      bottom: index == 47
-                          ? BorderSide.none
-                          : mainBorderSide,
+                      bottom: index == 47 ? BorderSide.none : mainBorderSide,
                     ),
                   ),
                   child: GestureDetector(
@@ -51,16 +58,20 @@ class HalfHourColorCellsWidget extends StatelessWidget {
                     },
                     behavior: HitTestBehavior.opaque,
                     onVerticalDragEnd: (details) async {
-                      endOffset= details.localPosition.dy;
-                      endIndex = startIndex! + ((endOffset - startOffset) / halfHourColorCellHeight(context)).round();
+                      endOffset = details.localPosition.dy;
+                      endIndex = startIndex! +
+                          ((endOffset - startOffset) /
+                                  halfHourColorCellHeight(context))
+                              .round();
+
                       return showDialog(
                         context: context,
                         barrierColor: Colors.transparent,
                         builder: (context) {
-                          final dialogState = context.watch<HalfHourColorCellsCubit>().state;
+                          final dialogState =
+                              context.watch<HalfHourColorCellsCubit>().state;
                           return AlertDialog(
-                            shape: Border.all(
-                                width: 1, color: blackColor),
+                            shape: Border.all(width: 1, color: blackColor),
                             backgroundColor: backgroundColor,
                             actionsPadding: EdgeInsets.zero,
                             contentPadding: EdgeInsets.symmetric(
@@ -87,40 +98,42 @@ class HalfHourColorCellsWidget extends StatelessWidget {
                                       width: screenWidth(context),
                                       height: 300,
                                       child: GridView.builder(
-                                        physics:
-                                        ClampingScrollPhysics(),
+                                        physics: ClampingScrollPhysics(),
                                         gridDelegate:
-                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                            SliverGridDelegateWithFixedCrossAxisCount(
                                           crossAxisCount: 8,
                                           mainAxisSpacing: 10,
                                           crossAxisSpacing: 10,
                                         ),
-                                        itemCount:
-                                        everyColors().length,
-                                        itemBuilder:
-                                            (context, index) {
+                                        itemCount: everyColors().length,
+                                        itemBuilder: (context, index) {
                                           return AspectRatio(
                                             aspectRatio: 1,
                                             child: GestureDetector(
                                               onTap: () {
-                                                context.read<HalfHourColorCellsCubit>().isSwitched();
-                                                context.read<HalfHourColorCellsCubit>().selectColor(color: everyColors()[index]);
-                                                context.read<HalfHourColorCellsCubit>().isSwitched();
+                                                context
+                                                    .read<
+                                                        HalfHourColorCellsCubit>()
+                                                    .selectColor(
+                                                        color: everyColors()[
+                                                            index]);
                                               },
                                               child: Container(
-                                                decoration:
-                                                BoxDecoration(
-                                                  color:
-                                                  everyColors()[
-                                                  index],
+                                                decoration: BoxDecoration(
+                                                  color: everyColors()[index],
                                                   border: Border.all(
-                                                      color:
-                                                      blackColor,
+                                                      color: blackColor,
                                                       width: 1),
                                                 ),
-                                                child: (dialogState.selectedColor == everyColors()[index]) ? Icon(
-                                                    CupertinoIcons
-                                                        .checkmark) : null,
+                                                child: (dialogState
+                                                            .selectedColor ==
+                                                        everyColors()[index])
+                                                    ? Icon(CupertinoIcons
+                                                        .checkmark)
+                                                    : null,
+                                                // (dialogState.selectedColor == everyColors()[index]) ? Icon(
+                                                //     CupertinoIcons
+                                                //         .checkmark) : null,
                                               ),
                                             ),
                                           );
@@ -131,14 +144,12 @@ class HalfHourColorCellsWidget extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            actionsAlignment:
-                            MainAxisAlignment.spaceEvenly,
+                            actionsAlignment: MainAxisAlignment.spaceEvenly,
                             actions: [
                               Container(
                                 decoration: BoxDecoration(
                                   color: backgroundColor,
-                                  border:
-                                  Border(top: mainBorderSide),
+                                  border: Border(top: mainBorderSide),
                                 ),
                                 child: Row(
                                   children: [
@@ -146,18 +157,19 @@ class HalfHourColorCellsWidget extends StatelessWidget {
                                       width: 175,
                                       height: appbarLength(context),
                                       decoration: BoxDecoration(
-                                        border: Border(
-                                            right: mainBorderSide),
+                                        border: Border(right: mainBorderSide),
                                       ),
                                       child: CupertinoButton(
                                         onPressed: () {
-                                          context.read<HalfHourColorCellsCubit>().selectColor(color: backgroundColor);
+                                          context
+                                              .read<HalfHourColorCellsCubit>()
+                                              .selectColor(
+                                                  color: backgroundColor);
                                         },
                                         child: Text(
                                           'RESET',
                                           style: TextStyle(
-                                              fontFamily:
-                                              'Unbounded Medium',
+                                              fontFamily: 'Unbounded Medium',
                                               fontSize: 20,
                                               color: blackColor),
                                         ),
@@ -173,8 +185,7 @@ class HalfHourColorCellsWidget extends StatelessWidget {
                                         child: Text(
                                           'SELECT',
                                           style: TextStyle(
-                                              fontFamily:
-                                              'Unbounded Medium',
+                                              fontFamily: 'Unbounded Medium',
                                               fontSize: 20,
                                               color: blackColor),
                                         ),
@@ -198,8 +209,6 @@ class HalfHourColorCellsWidget extends StatelessWidget {
     );
   }
 }
-
-
 
 /*
  selectedIndexList.map{ (e)

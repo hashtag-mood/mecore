@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mecore/modules/screens/auth/name_screen.dart';
 import 'package:mecore/modules/screens/journal_screen.dart';
 import 'package:mecore/modules/screens/onboarding_screen.dart';
 import 'package:mecore/modules/screens/setting_screen.dart';
@@ -18,17 +19,9 @@ final GlobalKey<NavigatorState> _settingNavigatorKey =
     GlobalKey<NavigatorState>();
 
 final _router = GoRouter(
-  initialLocation: '/today', // (FirebaseAuth.instance.currentUser == null) ? '/onboarding' : '/today',
+  initialLocation: '/onboarding',
+  // (FirebaseAuth.instance.currentUser == null) ? '/onboarding' : '/today',
   routes: [
-    GoRoute(
-      path: '/onboarding',
-      builder: (context, state) => OnboardingScreen(
-        signUpPath: '/signUp',
-        signInPath: '/signIn',
-        twitterPath: '/twitter',
-        applePath: 'apple',
-      ),
-    ),
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
         return CustomBottomNavigationBar(
@@ -109,6 +102,14 @@ final _router = GoRouter(
           ],
         ),
       ],
+    ),
+    GoRoute(
+      path: '/onboarding',
+      builder: (context, state) => OnboardingScreen(),
+    ),
+    GoRoute(
+      path: '/name',
+      builder: (context, state) => NameScreen(),
     ),
   ],
 );
