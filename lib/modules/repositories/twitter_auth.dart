@@ -12,8 +12,7 @@ Future<void> signInWithTwitter(BuildContext context) async {
       userCredential =
           await FirebaseAuth.instance.signInWithPopup(twitterProvider);
     } else {
-      userCredential =
-          await FirebaseAuth.instance.signInWithProvider(twitterProvider);
+      userCredential = await FirebaseAuth.instance.signInWithProvider(twitterProvider);
     }
 
     if (userCredential.user != null) {

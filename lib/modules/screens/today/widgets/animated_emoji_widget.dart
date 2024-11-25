@@ -7,16 +7,16 @@ import 'package:mecore/constants/lengths.dart';
 import 'package:mecore/constants/widgets.dart';
 import 'package:mecore/utils/animated_emoji_picker.dart';
 
-class AnimatedEmojiContainer extends StatefulWidget {
-  const AnimatedEmojiContainer({super.key});
+class AnimatedEmojiWidget extends StatefulWidget {
+  const AnimatedEmojiWidget({super.key});
 
   @override
-  State<AnimatedEmojiContainer> createState() => _AnimatedEmojiContainerState();
+  State<AnimatedEmojiWidget> createState() => _AnimatedEmojiWidgetState();
 }
 
-class _AnimatedEmojiContainerState extends State<AnimatedEmojiContainer> {
-  AnimatedEmoji selectedEmoji = AnimatedEmoji(AnimatedEmojis.peace, size: 60); // TODO the initial value of selectedEmoji should be must equal to defaultEmoji
-  AnimatedEmoji defaultEmoji = AnimatedEmoji(AnimatedEmojis.peace, size: 60);
+class _AnimatedEmojiWidgetState extends State<AnimatedEmojiWidget> {
+  AnimatedEmoji selectedEmoji = AnimatedEmoji(AnimatedEmojis.peace, size: 30); // TODO the initial value of selectedEmoji should be must equal to defaultEmoji
+  AnimatedEmoji defaultEmoji = AnimatedEmoji(AnimatedEmojis.peace, size: 30);
 
   void _showEmojiKeyboard(BuildContext context) {
     showDialog(
@@ -72,7 +72,7 @@ class _AnimatedEmojiContainerState extends State<AnimatedEmojiContainer> {
                     decoration: BoxDecoration(
                       border: Border(right: mainBorderSide),
                     ),
-                    width: 175,
+                    width: 160,
                     height: appbarLength(context),
                     child: CupertinoButton(
                       onPressed: () {
@@ -85,13 +85,13 @@ class _AnimatedEmojiContainerState extends State<AnimatedEmojiContainer> {
                         style: TextStyle(
                             fontFamily:
                             'Unbounded Medium',
-                            fontSize: 20,
+                            fontSize: 19,
                             color: blackColor),
                       ),
                     ),
                   ),
                   SizedBox(
-                    width: 175,
+                    width: 160,
                     height: appbarLength(context),
                     child: CupertinoButton(
                       onPressed: () {
@@ -102,7 +102,7 @@ class _AnimatedEmojiContainerState extends State<AnimatedEmojiContainer> {
                         style: TextStyle(
                             fontFamily:
                             'Unbounded Medium',
-                            fontSize: 20,
+                            fontSize: 19,
                             color: blackColor),
                       ),
                     ),
@@ -119,11 +119,11 @@ class _AnimatedEmojiContainerState extends State<AnimatedEmojiContainer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: appbarLength(context) * 2, // appbarLength(context) * 5 / 7 * 2 - 1.3,
-      height: appbarLength(context) * 2, // musicContainerHeight(context),
+      width: appbarLength(context), // appbarLength(context) * 5 / 7 * 2 - 1.3,
+      height: appbarLength(context), // musicContainerHeight(context),
       decoration: BoxDecoration(
         color: backgroundColor,
-        border: Border(right: mainBorderSide),
+        border: Border(bottom: mainBorderSide, right: mainBorderSide),
       ),
       child: TextButton(
         style: ButtonStyle(

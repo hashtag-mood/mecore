@@ -27,10 +27,27 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>app-1-433607737949-ios-201d5cfb1b23ca198d43b4</string>
+                <string>fb560778119679493</string>
+			    <string>com.googleusercontent.apps.433607737949-ogp0g5ae6mb5v6kbalv9npq5esdm4lfi</string>
+				<string>com.googleusercontent.apps.433607737949-p3lkanu9uvaof7ajf11qjq8b2cfm5588</string>
 			</array>
 		</dict>
 	</array>
+	<key>FacebookAppID</key>
+    <string>560778119679493</string>
+    <key>FacebookClientToken</key>
+    <string>e9a86d5fe8d2ecf3031007857a2dfe65</string>
+    <key>FacebookDisplayName</key>
+    <string>mecore</string>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+      <string>fbapi</string>
+      <string>fb-messenger-share-api</string>
+    </array>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>THIS APP REQUIRED NSPHOTOLIBRARYUSAGEDESCRIPTION PERMISSION FOR STICKER CREATION.</string>
+    <key>NSCameraUsageDescription</key>
+    <string>THIS APP REQUIRED NSCAMERAUSAGEDESCRIPTION PERMISSION FOR STICKER CREATION.</string>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>

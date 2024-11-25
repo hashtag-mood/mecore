@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:marquee_text/marquee_direction.dart';
 import 'package:marquee_text/marquee_text.dart';
 import 'package:mecore/constants/colors.dart';
 import 'package:mecore/constants/lengths.dart';

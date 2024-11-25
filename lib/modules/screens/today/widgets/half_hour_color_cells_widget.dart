@@ -11,10 +11,9 @@ import 'package:mecore/modules/bloc/half_hour_color_cells_cubit.dart';
 import 'package:mecore/modules/models/half_hour_color_cells.dart';
 
 class HalfHourColorCellsWidget extends StatelessWidget {
-  HalfHourColorCellsWidget({super.key});
-
   int? startIndex;
   int? endIndex;
+  HalfHourColorCellsWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +25,6 @@ class HalfHourColorCellsWidget extends StatelessWidget {
           children: List.generate(
             48,
             (index) {
-              final cellIndex = index;
               if (state.selectedColor != null &&
                   startIndex != null &&
                   endIndex != null) {
@@ -52,11 +50,11 @@ class HalfHourColorCellsWidget extends StatelessWidget {
                     ),
                   ),
                   child: GestureDetector(
+                    behavior: HitTestBehavior.opaque,
                     onVerticalDragStart: (details) {
                       startIndex = index;
                       startOffset = details.localPosition.dy;
                     },
-                    behavior: HitTestBehavior.opaque,
                     onVerticalDragEnd: (details) async {
                       endOffset = details.localPosition.dy;
                       endIndex = startIndex! +
@@ -74,73 +72,58 @@ class HalfHourColorCellsWidget extends StatelessWidget {
                             shape: Border.all(width: 1, color: blackColor),
                             backgroundColor: backgroundColor,
                             actionsPadding: EdgeInsets.zero,
-                            contentPadding: EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 8),
+                            contentPadding: EdgeInsets.all(15),
                             title: null,
                             content: SizedBox(
                               width: 175,
                               height: 300,
                               child: SingleChildScrollView(
-                                child: Column(
-                                  children: [
-                                    SizedBox(
-                                      width: 175,
-                                      height: 20,
-                                      child: Text('recent'),
+                                child: Container(
+                                  padding: EdgeInsets.zero,
+                                  width: screenWidth(context),
+                                  height: 300,
+                                  child: GridView.builder(
+                                    physics: ClampingScrollPhysics(),
+                                    gridDelegate:
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 8,
+                                      mainAxisSpacing: 10,
+                                      crossAxisSpacing: 8,
                                     ),
-                                    SizedBox(
-                                      width: 175,
-                                      height: 20,
-                                      child: Text('colors'),
-                                    ),
-                                    Container(
-                                      padding: EdgeInsets.zero,
-                                      width: screenWidth(context),
-                                      height: 300,
-                                      child: GridView.builder(
-                                        physics: ClampingScrollPhysics(),
-                                        gridDelegate:
-                                            SliverGridDelegateWithFixedCrossAxisCount(
-                                          crossAxisCount: 8,
-                                          mainAxisSpacing: 10,
-                                          crossAxisSpacing: 10,
-                                        ),
-                                        itemCount: everyColors().length,
-                                        itemBuilder: (context, index) {
-                                          return AspectRatio(
-                                            aspectRatio: 1,
-                                            child: GestureDetector(
-                                              onTap: () {
-                                                context
-                                                    .read<
-                                                        HalfHourColorCellsCubit>()
-                                                    .selectColor(
-                                                        color: everyColors()[
-                                                            index]);
-                                              },
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                  color: everyColors()[index],
-                                                  border: Border.all(
-                                                      color: blackColor,
-                                                      width: 1),
-                                                ),
-                                                child: (dialogState
-                                                            .selectedColor ==
-                                                        everyColors()[index])
-                                                    ? Icon(CupertinoIcons
-                                                        .checkmark)
-                                                    : null,
-                                                // (dialogState.selectedColor == everyColors()[index]) ? Icon(
-                                                //     CupertinoIcons
-                                                //         .checkmark) : null,
-                                              ),
+                                    itemCount: everyColors().length,
+                                    itemBuilder: (context, index) {
+                                      return AspectRatio(
+                                        aspectRatio: 1,
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            context
+                                                .read<
+                                                    HalfHourColorCellsCubit>()
+                                                .selectColor(
+                                                    color: everyColors()[
+                                                        index]);
+                                          },
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color: everyColors()[index],
+                                              border: Border.all(
+                                                  color: blackColor,
+                                                  width: 1),
                                             ),
-                                          );
-                                        },
-                                      ),
-                                    )
-                                  ],
+                                            child: (dialogState
+                                                        .selectedColor ==
+                                                    everyColors()[index])
+                                                ? Icon(CupertinoIcons
+                                                    .checkmark)
+                                                : null,
+                                            // (dialogState.selectedColor == everyColors()[index]) ? Icon(
+                                            //     CupertinoIcons
+                                            //         .checkmark) : null,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ),
                                 ),
                               ),
                             ),
@@ -154,7 +137,7 @@ class HalfHourColorCellsWidget extends StatelessWidget {
                                 child: Row(
                                   children: [
                                     Container(
-                                      width: 175,
+                                      width: 160,
                                       height: appbarLength(context),
                                       decoration: BoxDecoration(
                                         border: Border(right: mainBorderSide),
@@ -170,13 +153,13 @@ class HalfHourColorCellsWidget extends StatelessWidget {
                                           'RESET',
                                           style: TextStyle(
                                               fontFamily: 'Unbounded Medium',
-                                              fontSize: 20,
+                                              fontSize: 19,
                                               color: blackColor),
                                         ),
                                       ),
                                     ),
                                     SizedBox(
-                                      width: 175,
+                                      width: 160,
                                       height: appbarLength(context),
                                       child: CupertinoButton(
                                         onPressed: () {
@@ -186,7 +169,7 @@ class HalfHourColorCellsWidget extends StatelessWidget {
                                           'SELECT',
                                           style: TextStyle(
                                               fontFamily: 'Unbounded Medium',
-                                              fontSize: 20,
+                                              fontSize: 19,
                                               color: blackColor),
                                         ),
                                       ),

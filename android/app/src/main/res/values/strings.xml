@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">mecore</string>
+    <string name="facebook_app_id">560778119679493</string>
+    <string name="fb_login_protocol_scheme">fb560778119679493</string>
+    <string name="facebook_client_token">e9a86d5fe8d2ecf3031007857a2dfe65</string>
+</resources>

@@ -52,7 +52,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCU7-sD21hJXtMIKGyW1x2mbTGDn_gBz5M',
-    appId: '1:433607737949:android:b7f0f34aa88559978d43b4',
+    appId: '1:433607737949:android:92fdce06b6df101e8d43b4',
     messagingSenderId: '433607737949',
     projectId: 'mecore-ab466',
     storageBucket: 'mecore-ab466.firebasestorage.app',
@@ -60,19 +60,23 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyDqcOdyt-igVY1wC818jpNJaz7FVimpbTQ',
-    appId: '1:433607737949:ios:201d5cfb1b23ca198d43b4',
+    appId: '1:433607737949:ios:bf265537a8fd348e8d43b4',
     messagingSenderId: '433607737949',
     projectId: 'mecore-ab466',
     storageBucket: 'mecore-ab466.firebasestorage.app',
+    androidClientId: '433607737949-8npo66lpqrc5fkvhrr0nhije8d1khcro.apps.googleusercontent.com',
+    iosClientId: '433607737949-ogp0g5ae6mb5v6kbalv9npq5esdm4lfi.apps.googleusercontent.com',
     iosBundleId: 'com.hyoeunlee.mecore',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyDqcOdyt-igVY1wC818jpNJaz7FVimpbTQ',
-    appId: '1:433607737949:ios:201d5cfb1b23ca198d43b4',
+    appId: '1:433607737949:ios:bf265537a8fd348e8d43b4',
     messagingSenderId: '433607737949',
     projectId: 'mecore-ab466',
     storageBucket: 'mecore-ab466.firebasestorage.app',
+    androidClientId: '433607737949-8npo66lpqrc5fkvhrr0nhije8d1khcro.apps.googleusercontent.com',
+    iosClientId: '433607737949-ogp0g5ae6mb5v6kbalv9npq5esdm4lfi.apps.googleusercontent.com',
     iosBundleId: 'com.hyoeunlee.mecore',
   );
 

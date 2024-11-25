@@ -10,7 +10,7 @@ import 'package:mecore/modules/bloc/half_hour_color_cells_cubit.dart';
 import 'package:mecore/modules/models/half_hour_color_cells.dart';
 import 'package:mecore/utils/number_formatter.dart';
 import 'package:mecore/utils/hour_text.dart';
-import 'package:mecore/widgets/containers/animated_emoji_container.dart';
+import 'package:mecore/modules/screens/today/widgets/animated_emoji_widget.dart';
 import 'package:mecore/widgets/containers/weather_icon_container.dart';
 
 class OldTodayScreenBody extends StatefulWidget {
@@ -37,7 +37,7 @@ class _OldTodayScreenBodyState extends State<OldTodayScreenBody> {
                     WeatherIconContainer(),
                     Row(
                       children: [
-                        AnimatedEmojiContainer(),
+                        AnimatedEmojiWidget(),
                         // CustomEmojiContainer(),
                         Container(
                           width: appbarLength(context) * 5 / 7 * 5 + 0.3,

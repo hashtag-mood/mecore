@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mecore/modules/screens/auth/name_screen.dart';
@@ -19,8 +20,7 @@ final GlobalKey<NavigatorState> _settingNavigatorKey =
     GlobalKey<NavigatorState>();
 
 final _router = GoRouter(
-  initialLocation: '/onboarding',
-  // (FirebaseAuth.instance.currentUser == null) ? '/onboarding' : '/today',
+  initialLocation: (FirebaseAuth.instance.currentUser == null) ? '/onboarding' : '/today',
   routes: [
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {

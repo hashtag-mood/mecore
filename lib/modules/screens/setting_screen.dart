@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mecore/config/routes/routes.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mecore/constants/colors.dart';
 import 'package:mecore/constants/lengths.dart';
 import 'package:mecore/constants/widgets.dart';
@@ -83,15 +85,18 @@ class SettingScreen extends StatelessWidget {
                 border: Border(bottom: mainBorderSide),
               ),
               child: TextButton(
-                  onPressed: () async {
-                    try {
-                      await FirebaseAuth.instance.signOut();
-                      context.go('/onboarding');
-                    } catch (e) {
-                      print(e);
-                    }
-                  },
-                  child: Text('로그아웃'),),
+                onPressed: () async {
+                  try {
+                    await FirebaseAuth.instance.signOut();
+                    GoogleSignIn().signOut();
+                    FacebookAuth.instance.logOut();
+                    context.go('/onboarding');
+                  } catch (e) {
+                    print(e);
+                  }
+                },
+                child: Text('로그아웃'),
+              ),
             ),
           ],
         ),

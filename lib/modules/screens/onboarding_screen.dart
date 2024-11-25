@@ -1,18 +1,14 @@
-import 'dart:async';
 import 'dart:io';
-import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:mecore/config/routes/routes.dart';
 import 'package:mecore/constants/colors.dart';
 import 'package:mecore/constants/lengths.dart';
-import 'package:mecore/constants/widgets.dart';
 import 'package:mecore/modules/repositories/apple_auth.dart';
+import 'package:mecore/modules/repositories/facebook_auth.dart';
+import 'package:mecore/modules/repositories/google_auth.dart';
 import 'package:mecore/modules/repositories/twitter_auth.dart';
-import 'package:responsive_notebook_background/responsive_notebook_background.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -29,9 +25,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         body: Column(
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Container(
+                if(!Platform.isAndroid && !Platform.isWindows) Container(
                   width: appbarLength(context) * 1.2,
                   height: appbarLength(context) * 1.2,
                   decoration: BoxDecoration(
@@ -79,6 +74,38 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               borderRadius: BorderRadius.zero),
                         ),
                         overlayColor:
+                        WidgetStatePropertyAll(Colors.transparent),
+                      ),
+                      onPressed: () async {
+                        try {
+                          if (kIsWeb) {
+                            await signInWithGoogle(context);
+                          } else {
+                            await signInWithGoogle(context);
+                          }
+                        } catch (e) {
+                          print(e);
+                        }
+                      },
+                      child: Image(image: AssetImage('assets/image/google_logo_512.png'),),),
+                  ),
+                ),
+                Container(
+                  width: appbarLength(context) * 1.2,
+                  height: appbarLength(context) * 1.2,
+                  decoration: BoxDecoration(
+                    border: Border.all(),
+                    color: backgroundColor,
+                  ),
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: TextButton(
+                      style: ButtonStyle(
+                        shape: WidgetStatePropertyAll(
+                          RoundedRectangleBorder(
+                              borderRadius: BorderRadius.zero),
+                        ),
+                        overlayColor:
                             WidgetStatePropertyAll(Colors.transparent),
                       ),
                       onPressed: () async {
@@ -93,7 +120,42 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         }
                       },
                       child: Image(
-                        image: AssetImage('assets/image/twitter_logo_512.png'),
+                        image: AssetImage('assets/image/x_logo_512.png'),
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  width: appbarLength(context) * 1.2,
+                  height: appbarLength(context) * 1.2,
+                  decoration: BoxDecoration(
+                    border: Border.all(),
+                    color: backgroundColor,
+                  ),
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: TextButton(
+                      style: ButtonStyle(
+                        shape: WidgetStatePropertyAll(
+                          RoundedRectangleBorder(
+                              borderRadius: BorderRadius.zero),
+                        ),
+                        overlayColor:
+                        WidgetStatePropertyAll(Colors.transparent),
+                      ),
+                      onPressed: () async {
+                        try {
+                          if (kIsWeb) {
+                            await signInWithFacebook(context);
+                          } else {
+                            await signInWithFacebook(context);
+                          }
+                        } catch (e) {
+                          print(e);
+                        }
+                      },
+                      child: Image(
+                        image: AssetImage('assets/image/facebook_logo_512.png'),
                       ),
                     ),
                   ),

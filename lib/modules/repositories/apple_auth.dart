@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mecore/config/routes/routes.dart';
 
 Future<void> signInWithApple(BuildContext context) async {
   final appleProvider = AppleAuthProvider();

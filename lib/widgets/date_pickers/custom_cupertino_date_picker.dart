@@ -169,7 +169,7 @@ class CustomCupertinoDatePicker {
                               style: TextStyle(
                                   fontFamily:
                                   'Unbounded Medium',
-                                  fontSize: 20,
+                                  fontSize: 19,
                                   color: blackColor),
                             ),
                             onPressed: () {
@@ -197,7 +197,7 @@ class CustomCupertinoDatePicker {
                               style: TextStyle(
                                   fontFamily:
                                   'Unbounded Medium',
-                                  fontSize: 20,
+                                  fontSize: 19,
                                   color: blackColor),
                             ),
                             onPressed: () {

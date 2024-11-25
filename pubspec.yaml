@@ -46,8 +46,16 @@ dependencies:
   firebase_auth: ^5.3.0
   text_marquee: ^0.0.2
   marquee: ^2.3.0
-  flutter_native_splash: ^2.4.2
   marquee_text: ^2.5.0+1
+  google_sign_in: ^6.2.2
+  flutter_facebook_auth: ^7.1.1
+  image_picker: ^1.1.2
+  image_picker_for_web: ^3.0.6
+  http: ^1.2.2
+  cloud_firestore: ^5.5.0
+  image: ^4.3.0
+  firebase_storage: ^12.3.6
+  lindi_sticker_widget: ^1.0.1
 
 dev_dependencies:
   flutter_test:
