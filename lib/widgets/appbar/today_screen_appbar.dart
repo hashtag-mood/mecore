@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lindi_sticker_widget/lindi_controller.dart';
 import 'package:mecore/constants/colors.dart';
 import 'package:mecore/constants/lengths.dart';
 import 'package:mecore/constants/widgets.dart';
@@ -12,7 +13,8 @@ import 'package:mecore/widgets/appbar_buttons/appbar_user_image.dart';
 import 'package:mecore/widgets/date_pickers/custom_cupertino_date_picker.dart';
 
 class TodayScreenAppbar extends StatefulWidget {
-  const TodayScreenAppbar({super.key});
+  LindiController lindiController;
+  TodayScreenAppbar({super.key, required this.lindiController});
 
   @override
   State<TodayScreenAppbar> createState() => _TodayScreenAppbarState();
@@ -53,7 +55,7 @@ class _TodayScreenAppbarState extends State<TodayScreenAppbar> {
             },
           ),
           // AppbarSearchIconButton(),
-          AppbarStickerButton(),
+          AppbarStickerButton(lindiController: widget.lindiController,),
           AppbarSaveButton(),
           //AppbarPopupMenuButton(
           //  onSelectedCallback: () {

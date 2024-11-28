@@ -5,10 +5,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:mecore/constants/colors.dart';
 import 'package:mecore/constants/lengths.dart';
-import 'package:mecore/modules/repositories/apple_auth.dart';
-import 'package:mecore/modules/repositories/facebook_auth.dart';
-import 'package:mecore/modules/repositories/google_auth.dart';
-import 'package:mecore/modules/repositories/twitter_auth.dart';
+import 'package:mecore/modules/repositories/auth/apple_auth.dart';
+import 'package:mecore/modules/repositories/auth/facebook_auth.dart';
+import 'package:mecore/modules/repositories/auth/google_auth.dart';
+import 'package:mecore/modules/repositories/auth/twitter_auth.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});

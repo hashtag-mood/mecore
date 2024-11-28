@@ -12,6 +12,7 @@ import 'package:mecore/modules/models/half_hour_color_cells.dart';
 
 class HalfHourColorCellsWidget extends StatelessWidget {
   int? startIndex;
+  int? cellIndex;
   int? endIndex;
   HalfHourColorCellsWidget({super.key});
 
@@ -64,6 +65,7 @@ class HalfHourColorCellsWidget extends StatelessWidget {
 
                       return showDialog(
                         context: context,
+                        barrierDismissible: false,
                         barrierColor: Colors.transparent,
                         builder: (context) {
                           final dialogState =

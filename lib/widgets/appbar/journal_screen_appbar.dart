@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lindi_sticker_widget/lindi_controller.dart';
+import 'package:mecore/config/themes/color_picker_theme_data.dart';
 import 'package:mecore/constants/colors.dart';
 import 'package:mecore/constants/lengths.dart';
 import 'package:mecore/constants/widgets.dart';
@@ -12,7 +14,8 @@ import 'package:mecore/widgets/appbar_buttons/appbar_user_image.dart';
 import 'package:mecore/widgets/date_pickers/custom_cupertino_date_picker.dart';
 
 class JournalScreenAppbar extends StatefulWidget {
-  const JournalScreenAppbar({super.key});
+  LindiController lindiController;
+  JournalScreenAppbar({super.key, required this.lindiController});
 
   @override
   State<JournalScreenAppbar> createState() => _JournalScreenAppbarState();
@@ -53,7 +56,7 @@ class _JournalScreenAppbarState extends State<JournalScreenAppbar> {
             },
           ),
           // AppbarSearchIconButton(),
-          AppbarStickerButton(),
+          AppbarStickerButton(lindiController: widget.lindiController,),
           AppbarSaveButton(),
           //AppbarPopupMenuButton(
           //  onSelectedCallback: () {

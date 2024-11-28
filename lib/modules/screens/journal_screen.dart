@@ -18,7 +18,7 @@ class JournalScreen extends StatelessWidget {
           ),
           child: AppBar(
             automaticallyImplyLeading: false,
-            flexibleSpace: JournalScreenAppbar(),
+            //flexibleSpace: JournalScreenAppbar(lindiController: ,),
           ),
         ),
         body: JournalScreenBody(),

@@ -9,6 +9,7 @@ import 'package:mecore/modules/bloc/date_cubit.dart';
 import 'package:mecore/modules/bloc/half_hour_color_cells_cubit.dart';
 import 'package:mecore/modules/bloc/single_line_text_cubit.dart';
 import 'package:mecore/modules/bloc/weather_icon_cubit.dart';
+import 'package:mecore/modules/models/lindi_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,6 +38,7 @@ class mecore extends StatelessWidget {
         BlocProvider(
           create: (context) => SingleLineTextCubit(),
         ),
+        BlocProvider(create: (context) => LindiCubit(),),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
