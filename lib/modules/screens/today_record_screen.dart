@@ -141,7 +141,7 @@ class _TodayRecordScreenState extends State<TodayRecordScreen> {
                           todayDecoration: BoxDecoration(
                             borderRadius: BorderRadius.zero,
                             shape: BoxShape.rectangle,
-                            color: colorPickerColors[0]['standard pink'],
+                            color: colorPickerColors[1]['standard pink'],
                             border: Border.all(color: blackColor, width: 1),
                           ),
                           defaultTextStyle: TextStyle(
@@ -205,7 +205,7 @@ class _TodayRecordScreenState extends State<TodayRecordScreen> {
                           selectedDecoration: BoxDecoration(
                             borderRadius: BorderRadius.zero,
                             shape: BoxShape.rectangle,
-                            color: colorPickerColors[1]['light silver'],
+                            color: colorPickerColors[0]['light silver'],
                             border: Border.all(color: blackColor, width: 1),
                           ),
                         ),

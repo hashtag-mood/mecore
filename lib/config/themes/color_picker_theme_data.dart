@@ -144,8 +144,8 @@ Map<String, Color> pinkColors = {
 };
 
 List<Map<String, Color>> colorPickerColors = [
-  pinkColors,
   whiteColors,
+  pinkColors,
   vividRedColors,
   mutedRedColors,
   orangeColors,

@@ -7,9 +7,12 @@ import 'package:mecore/config/routes/routes.dart';
 import 'package:mecore/firebase_options.dart';
 import 'package:mecore/modules/bloc/date_cubit.dart';
 import 'package:mecore/modules/bloc/half_hour_color_cells_cubit.dart';
+import 'package:mecore/modules/bloc/journal_date_cubit.dart';
 import 'package:mecore/modules/bloc/single_line_text_cubit.dart';
+import 'package:mecore/modules/bloc/today_date_cubit.dart';
 import 'package:mecore/modules/bloc/weather_icon_cubit.dart';
-import 'package:mecore/modules/models/lindi_cubit.dart';
+import 'package:mecore/modules/bloc/wheel_chooser_cubit.dart';
+import 'package:mecore/modules/bloc/lindi_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,6 +32,8 @@ class mecore extends StatelessWidget {
         BlocProvider(
           create: (context) => DateCubit(),
         ),
+        BlocProvider(create: (context) => TodayDateCubit(),),
+        BlocProvider(create: (context) => JournalDateCubit(),),
         BlocProvider(
           create: (context) => WeatherIconCubit(),
         ),
@@ -39,10 +44,11 @@ class mecore extends StatelessWidget {
           create: (context) => SingleLineTextCubit(),
         ),
         BlocProvider(create: (context) => LindiCubit(),),
+        BlocProvider(create: (context) => WheelChooserCubit(),),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
-        locale: Locale('ja', ''),
+        locale: Locale('ko', ''),
         supportedLocales: [
           Locale('en', ''),
           Locale('ko', ''),

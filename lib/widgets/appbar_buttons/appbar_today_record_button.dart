@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mecore/constants/lengths.dart';
@@ -22,10 +23,12 @@ class AppbarTodayRecordButton extends StatelessWidget {
               onPressed: () {
                 context.go('/today/record');
               },
-              icon: Image.asset(
-                'assets/icons/medical-star_128.png',
-                width: appbarLength(context) * 0.5,
-              ),
+              icon: Icon(CupertinoIcons.folder),
+              iconSize: appbarLength(context) * 0.5,
+              // icon: Image.asset(
+              //   'assets/icons/medical-star_128.png',
+              //   width: appbarLength(context) * 0.5,
+              // ),
             );
           },
         ),

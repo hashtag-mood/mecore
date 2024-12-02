@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mecore/modules/screens/today/today_screen.dart';
 
 double appbarLength(BuildContext context) {
   return MediaQuery.of(context).size.width / 7;
@@ -6,6 +7,14 @@ double appbarLength(BuildContext context) {
 
 double screenWidth(BuildContext context) {
   return MediaQuery.of(context).size.width;
+}
+
+double screenHeight(BuildContext context) {
+  return MediaQuery.of(context).size.height;
+}
+
+double todayScreenTimeWidgetHeight(BuildContext context) {
+  return (screenHeight(context) - TodayScreen.todayScreenPadding - appbarLength(context) * 6) / 6 - 2 / 6;
 }
 
 double musicContainerHeight(BuildContext context) {

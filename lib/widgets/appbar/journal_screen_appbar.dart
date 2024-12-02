@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lindi_sticker_widget/lindi_controller.dart';
-import 'package:mecore/config/themes/color_picker_theme_data.dart';
 import 'package:mecore/constants/colors.dart';
+import 'package:mecore/constants/instance.dart';
 import 'package:mecore/constants/lengths.dart';
 import 'package:mecore/constants/widgets.dart';
 import 'package:mecore/modules/bloc/date_cubit.dart';
+import 'package:mecore/modules/bloc/journal_date_cubit.dart';
 import 'package:mecore/widgets/appbar_buttons/appbar_date_picker_button.dart';
+import 'package:mecore/widgets/appbar_buttons/appbar_edit_button.dart';
+import 'package:mecore/widgets/appbar_buttons/appbar_journal_date_picker_button.dart';
 import 'package:mecore/widgets/appbar_buttons/appbar_journal_record_button.dart';
 import 'package:mecore/widgets/appbar_buttons/appbar_save_button.dart';
 import 'package:mecore/widgets/appbar_buttons/appbar_sticker_button.dart';
@@ -14,8 +16,7 @@ import 'package:mecore/widgets/appbar_buttons/appbar_user_image.dart';
 import 'package:mecore/widgets/date_pickers/custom_cupertino_date_picker.dart';
 
 class JournalScreenAppbar extends StatefulWidget {
-  LindiController lindiController;
-  JournalScreenAppbar({super.key, required this.lindiController});
+  const JournalScreenAppbar({super.key});
 
   @override
   State<JournalScreenAppbar> createState() => _JournalScreenAppbarState();
@@ -34,30 +35,50 @@ class _JournalScreenAppbarState extends State<JournalScreenAppbar> {
         children: [
           AppbarJournalRecordButton(),
           AppbarUserImage(),
-          AppbarDatePickerButton(
-            onPressedCallback: () async {
-              await customCupertinoDatePicker.selectDate(
-                context,
-                (month) {
-                  context.read<DateCubit>().updateMonth(month);
-                },
-                (day) {
-                  context.read<DateCubit>().updateDay(day);
-                },
-                (year) {
-                  context.read<DateCubit>().updateYear(year);
-                },
-              );
-              // await customDatePicker.selectDate(context, () {
-              //   setState(
-              //     () {},
-              //   );
-              // },);
-            },
-          ),
+          AppbarJournalDatePickerButton(onPressedCallback: () async {
+            await cupertinoJournalDatePicker.selectDate(
+              context,
+                  (month) {
+                context.read<JournalDateCubit>().updateMonth(month);
+              },
+                  (day) {
+                context.read<JournalDateCubit>().updateDay(day);
+              },
+                  (year) {
+                context.read<JournalDateCubit>().updateYear(year);
+              },
+            );
+            // await customDatePicker.selectDate(context, () {
+            //   setState(
+            //     () {},
+            //   );
+            // },);
+          },),
+          // AppbarDatePickerButton(
+          //   onPressedCallback: () async {
+          //     await customCupertinoDatePicker.selectDate(
+          //       context,
+          //       (month) {
+          //         context.read<DateCubit>().updateMonth(month);
+          //       },
+          //       (day) {
+          //         context.read<DateCubit>().updateDay(day);
+          //       },
+          //       (year) {
+          //         context.read<DateCubit>().updateYear(year);
+          //       },
+          //     );
+          //     // await customDatePicker.selectDate(context, () {
+          //     //   setState(
+          //     //     () {},
+          //     //   );
+          //     // },);
+          //   },
+          // ),
           // AppbarSearchIconButton(),
-          AppbarStickerButton(lindiController: widget.lindiController,),
-          AppbarSaveButton(),
+          AppbarStickerButton(),
+          AppbarEditButton(),
+          //AppbarSaveButton(),
           //AppbarPopupMenuButton(
           //  onSelectedCallback: () {
           //    setState(() {});

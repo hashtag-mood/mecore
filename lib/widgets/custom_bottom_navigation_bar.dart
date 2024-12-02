@@ -23,7 +23,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
       body: navigationShell,
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
-          border: Border(top: mainBorderSide),
+          border: Border(top: mainBorderSide, bottom: mainBorderSide),
         ),
         child: NavigationBar(
           onDestinationSelected: onDestinationSelected,
@@ -35,9 +35,8 @@ class CustomBottomNavigationBar extends StatelessWidget {
           labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
           destinations: [
             NavigationDestination(
-              icon: Icon(CupertinoIcons.burst),
+              icon: Icon(CupertinoIcons.compass, size: 30),
               label: 'TODAY',
-              selectedIcon: Icon(CupertinoIcons.burst_fill),
             ),
             // NavigationDestination(
             //   icon: Icon(CupertinoIcons.flag),
@@ -45,14 +44,12 @@ class CustomBottomNavigationBar extends StatelessWidget {
             //   selectedIcon: Icon(CupertinoIcons.flag_fill),
             // ),
             NavigationDestination(
-              icon: Icon(CupertinoIcons.quote_bubble),
+              icon: Icon(CupertinoIcons.helm, size: 30),
               label: 'JOURNAL',
-              selectedIcon: Icon(CupertinoIcons.quote_bubble_fill),
             ),
             NavigationDestination(
-              icon: Icon(CupertinoIcons.wrench),
+              icon: Icon(CupertinoIcons.settings, size: 30),
               label: 'SETTING',
-              selectedIcon: Icon(CupertinoIcons.wrench_fill),
             ),
           ],
         ),
