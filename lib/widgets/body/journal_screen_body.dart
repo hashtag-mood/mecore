@@ -29,7 +29,7 @@ class _JournalScreenBodyState extends State<JournalScreenBody> {
         child: CupertinoTextField.borderless(
           minLines: 20,
           maxLines: null,
-          padding: EdgeInsets.only(left: 7),
+          padding: EdgeInsets.only(left: 8),
           cursorHeight: 20,
           scrollPadding: EdgeInsets.zero,
           style: TextStyle(

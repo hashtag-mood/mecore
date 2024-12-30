@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-Map<int, Color> morningColors = {};
+
+
+
 Map<int, Color> afternoonColors = {};
 Map<int, Color> eveningColors = {};
 Map<int, Color> nightColors = {};

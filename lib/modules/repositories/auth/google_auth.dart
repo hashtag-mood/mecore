@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:mecore/constants/instance.dart';
 
 Future<void> signInWithGoogle(BuildContext context) async {
   UserCredential userCredential;
@@ -34,6 +35,7 @@ Future<void> signInWithGoogle(BuildContext context) async {
   }
 
   if(userCredential.user != null) {
+    await userDocRef.update({'uid':userCredential.user!.uid});
     context.go('/today');
   }
 }

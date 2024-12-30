@@ -1,6 +1,8 @@
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,7 +13,9 @@ import 'package:mecore/constants/colors.dart';
 import 'package:mecore/constants/lengths.dart';
 import 'package:mecore/constants/widgets.dart';
 import 'package:mecore/modules/bloc/half_hour_color_cells_cubit.dart';
+import 'package:mecore/modules/bloc/setting_cubit.dart';
 import 'package:mecore/modules/models/half_hour_color_cells.dart';
+import 'package:mecore/modules/screens/today/widgets/max_width.dart';
 import 'package:responsive_notebook_background/responsive_notebook_background.dart';
 
 class MorningScreen extends StatefulWidget {
@@ -24,12 +28,43 @@ class MorningScreen extends StatefulWidget {
 class _MorningScreenState extends State<MorningScreen> {
   List<String> morningHour = ['5', '6', '7', '8', '9', '10'];
   int? startIndex;
+  int? cellIndex;
   int? endIndex;
-  List<TextEditingController> textEditingControllerList = [];
+  bool isDragging = false;
+  TextEditingController textEditingController = TextEditingController();
+  Map<int, Color> draggedMorningColors = {};
+  Map<int, Color> morningColors = {};
+
+  /// draggedMorningColor 초기화
+  /// 초기화 시점: picker close될때
+  void clearDraggedMorningColors(){
+    draggedMorningColors.clear();
+  }
+
+
+  ///cubit의 morinigColor값을 화면에 적용
+  void updateMorningColor(Color color){
+    if (startIndex != null && endIndex != null) {
+      for (int i = 0; i < 12; i++) {
+        if (startIndex! <= i && i <= endIndex! ||
+            endIndex! <= i && i <= startIndex!) {
+          morningColors[i] = color;
+        }
+      }
+    }
+  }
+  ///cell color에 따라 text color  반전
+  Color getCellTextColor(int index){
+    if((morningColors[index]?.computeLuminance()??1) < 0.3 && (draggedMorningColors[index]?.computeLuminance()??1) < 0.3) {
+      return backgroundColor;
+    } else {
+      return blackColor;
+    }
+
+  }
 
   @override
   Widget build(BuildContext context) {
-    textEditingControllerList = List.generate(12, (index) => TextEditingController(),);
     return Row(
       children: [
         Column(
@@ -70,19 +105,25 @@ class _MorningScreenState extends State<MorningScreen> {
         BlocBuilder<HalfHourColorCellsCubit, HalfHourColorCells>(
           builder: (context, state) {
             double startOffset = 0;
+            double cellOffset = 0;
             double endOffset = 0;
+
+            updateMorningColor(state.morningColor);
+
             return Column(
               children: List.generate(
                 12,
                 (index) {
-                  if (startIndex != null && endIndex != null) {
-                    for (int i = 0; i < 12; i++) {
-                      if (startIndex! <= i && i <= endIndex! ||
-                          endIndex! <= i && i <= startIndex!) {
-                        morningColors[i] = state.morningColor;
-                      }
-                    }
+
+
+                  final settingState = context.watch<SettingCubit>().state;
+                  Color boxBackgroundColor=backgroundColor;
+                  if(draggedMorningColors[index] != null){
+                    boxBackgroundColor=draggedMorningColors[index]!;
+                  }else if(morningColors.containsKey(index)){
+                    boxBackgroundColor=morningColors[index]!;
                   }
+
                   return Align(
                     alignment: Alignment.centerLeft,
                     child: Container(
@@ -90,9 +131,10 @@ class _MorningScreenState extends State<MorningScreen> {
                       width: appbarLength(context) * 2 / 3,
                       // appbarLength(context) * 0.65,
                       decoration: BoxDecoration(
-                        color: (morningColors.containsKey(index))
-                            ? morningColors[index]
-                            : backgroundColor,
+                        color:boxBackgroundColor,
+                        // color: (morningColors.containsKey(index))
+                        //     ? morningColors[index]
+                        //     : backgroundColor,
                         border: Border(
                           right: mainBorderSide,
                           bottom:
@@ -100,39 +142,48 @@ class _MorningScreenState extends State<MorningScreen> {
                         ),
                       ),
                       child: GestureDetector(
-                        child: (index.isEven)
-                            ? Align(
-                                alignment: Alignment.center,
-                                child: Text(
-                                  '00',
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      color: (morningColors[index] != null &&
-                                              morningColors[index]!
-                                                      .computeLuminance() <
-                                                  0.3)
-                                          ? backgroundColor
-                                          : blackColor),
-                                ),
-                              )
-                            : Align(
-                                alignment: Alignment.center,
-                                child: Text(
-                                  '30',
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      color: (morningColors[index] != null &&
-                                              morningColors[index]!
-                                                      .computeLuminance() <
-                                                  0.3)
-                                          ? backgroundColor
-                                          : blackColor),
-                                ),
-                              ),
                         behavior: HitTestBehavior.opaque,
                         onVerticalDragStart: (details) {
                           startIndex = index;
                           startOffset = details.localPosition.dy;
+                        },
+                        onVerticalDragUpdate: (details) {
+                            cellOffset = details.localPosition.dy;
+                            cellIndex = startIndex! +
+                                ((cellOffset - startOffset) /
+                                    (todayScreenTimeWidgetHeight(context) /
+                                        2))
+                                    .round();
+
+                            print('dragupdate cellIndex:$cellIndex # startIndex ; $startIndex');
+
+                            //아래에서 위로 드래그
+                            if(startIndex! > cellIndex!) {
+                              for (var i = startIndex!; i >= cellIndex!; i--) {
+                                draggedMorningColors[i]=Colors.pink.shade50;
+                              }
+                            }else{//위에서 아래로 드래그
+                              for(var i=startIndex!; i <= cellIndex!; i++){
+                                draggedMorningColors[i]=Colors.pink.shade50;
+                              }
+                            }
+                            setState(() {
+
+                            });
+
+
+                          //setState(() {
+                            // isDragging = true;
+                            // if (startIndex != null && cellIndex != null) {
+                            //   for (int i = 0; i < 12; i++) {
+                            //     if ((startIndex! <= i && cellIndex! >=i ) ||
+                            //         (startIndex! >= i && cellIndex! <=i)) {
+                            //
+                            //       morningColors[i] = Colors.pink.shade50;
+                            //     }
+                            //   }
+                            // }
+                          //});
                         },
                         onVerticalDragEnd: (details) async {
                           endOffset = details.localPosition.dy;
@@ -141,10 +192,19 @@ class _MorningScreenState extends State<MorningScreen> {
                                       (todayScreenTimeWidgetHeight(context) /
                                           2))
                                   .round();
-
+                          // if (isDragging = false) {
+                          //   if (startIndex != null && endIndex != null) {
+                          //     for (int i = 0; i < 12; i++) {
+                          //       if (startIndex! <= i && i <= endIndex! ||
+                          //           endIndex! <= i && i <= startIndex!) {
+                          //         morningColors[i] = state.morningColor;
+                          //       }
+                          //     }
+                          //   }
+                          // }
+                          draggedMorningColors.clear();
                           return showDialog(
                             context: context,
-                            barrierDismissible: false,
                             barrierColor: Colors.transparent,
                             builder: (context) {
                               final dialogState = context
@@ -279,6 +339,27 @@ class _MorningScreenState extends State<MorningScreen> {
                             },
                           );
                         },
+                        child: (settingState.showMinute)
+                            ? (index.isEven)
+                                ? Align(
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      '00',
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          color: getCellTextColor(index),
+                                    ),
+                                  ))
+                                : Align(
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      '30',
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          color: getCellTextColor(index),
+                                    ),
+                                  ))
+                            : null,
                       ),
                     ),
                   );
@@ -287,40 +368,55 @@ class _MorningScreenState extends State<MorningScreen> {
             );
           },
         ),
-        Column(
-          children: List.generate(
-            12,
-            (index) {
-              return Align(
-                alignment: Alignment.centerLeft,
-                child: SizedBox(
-                  height: todayScreenTimeWidgetHeight(context) / 2,
-                  width: appbarLength(context) * 5,
-                  // screenWidth(context) - appbarLength(context) * 1.65,
-                  child: CupertinoTextField(
-                    controller: textEditingControllerList[index],
-                    onChanged: (value) {
-                      String onChangedText = '';
-                      onChangedText = textEditingControllerList[index].text;
-                      morningText[index] = onChangedText;
-                    },
-                    textAlignVertical: TextAlignVertical.center,
-                    style: TextStyle(
-                      color: blackColor,
-                      fontSize: 19,
-                    ),
-                    maxLines: 1,
+        Stack(
+          children: [
+            Column(
+              children: List.generate(
+                12,
+                (index) {
+                  return Container(
+                    width: appbarLength(context) * 5,
+                    height: todayScreenTimeWidgetHeight(context) / 2,
                     decoration: BoxDecoration(
                       color: backgroundColor,
                       border: Border(
                         bottom: index == 11 ? BorderSide.none : mainBorderSide,
                       ),
                     ),
-                  ),
+                  );
+                },
+              ),
+            ),
+            SizedBox(
+              width: appbarLength(context) * 5,
+              height: todayScreenTimeWidgetHeight(context) * 6,
+              child: CupertinoTextField.borderless(
+                controller: textEditingController,
+                padding: EdgeInsets.only(left: 8),
+                cursorHeight: fontSize,
+                style: TextStyle(
+                  color: blackColor,
+                  fontSize: fontSize,
+                  height: todayScreenTimeWidgetHeight(context) / 2 / fontSize,
+                  leadingDistribution: TextLeadingDistribution.even,
                 ),
-              );
-            },
-          ),
+                inputFormatters: [
+                  TextInputFormatter.withFunction(
+                    (oldValue, newValue) {
+                      int lines = newValue.text.split('\n').length;
+                      if (lines > 12) {
+                        return oldValue;
+                      } else {
+                        return newValue;
+                      }
+                    },
+                  ),
+                ],
+                scrollPhysics: NeverScrollableScrollPhysics(),
+                maxLines: 12,
+              ),
+            ),
+          ],
         ),
       ],
     );

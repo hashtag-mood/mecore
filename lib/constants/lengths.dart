@@ -14,7 +14,11 @@ double screenHeight(BuildContext context) {
 }
 
 double todayScreenTimeWidgetHeight(BuildContext context) {
-  return (screenHeight(context) - TodayScreen.todayScreenPadding - appbarLength(context) * 6) / 6 - 2 / 6;
+  return (screenHeight(context) - TodayScreen.todayScreenPadding - appbarLength(context) * 6 - 2) / 6;
+}
+
+double todayScreenBodyHeight(BuildContext context) {
+  return screenHeight(context) - TodayScreen.todayScreenPadding - appbarLength(context) * 2 - 2;
 }
 
 double musicContainerHeight(BuildContext context) {
@@ -28,3 +32,5 @@ double drawerWidth(BuildContext context) {
 double halfHourColorCellHeight(BuildContext context) {
   return appbarLength(context) * 1.6 * 1 / 2;
 }
+
+double fontSize = 19;

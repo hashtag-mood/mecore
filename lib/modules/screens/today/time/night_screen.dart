@@ -8,7 +8,9 @@ import 'package:mecore/constants/colors.dart';
 import 'package:mecore/constants/lengths.dart';
 import 'package:mecore/constants/widgets.dart';
 import 'package:mecore/modules/bloc/half_hour_color_cells_cubit.dart';
+import 'package:mecore/modules/bloc/setting_cubit.dart';
 import 'package:mecore/modules/models/half_hour_color_cells.dart';
+import 'package:mecore/modules/models/setting.dart';
 
 class NightScreen extends StatefulWidget {
   const NightScreen({super.key});
@@ -18,7 +20,8 @@ class NightScreen extends StatefulWidget {
 }
 
 class _NightScreenState extends State<NightScreen> {
-  List<String> nightHours = ['11', '12', '1', '2', '3', '4'];
+  List<String> night12Hours = ['11', '12', '1', '2', '3', '4'];
+  List<String> night24Hours = ['23', '24', '1', '2', '3', '4'];
   int? startIndex;
   int? endIndex;
   
@@ -26,40 +29,44 @@ class _NightScreenState extends State<NightScreen> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Column(
-          children: List.generate(
-            6,
-                (index) {
-              return Align(
-                alignment: Alignment.centerLeft,
-                child: Container(
-                  width: appbarLength(context) * 4 / 3,
-                  height: todayScreenTimeWidgetHeight(context),
-                  decoration: BoxDecoration(
-                    color: backgroundColor,
-                    border: Border(
-                      right: mainBorderSide,
-                      bottom: (index == 5) ? BorderSide.none : mainBorderSide,
-                    ),
-                  ),
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      nightHours[index],
-                      style: TextStyle(
-                        fontSize: 22,
-                        fontFamily: 'Public Sans',
-                        letterSpacing: 2,
-                        fontVariations: [
-                          FontVariation('wght', 300),
-                        ],
+        BlocBuilder<SettingCubit, Setting>(
+          builder: (context, state) {
+            return Column(
+              children: List.generate(
+                6,
+                    (index) {
+                  return Align(
+                    alignment: Alignment.centerLeft,
+                    child: Container(
+                      width: appbarLength(context) * 4 / 3,
+                      height: todayScreenTimeWidgetHeight(context),
+                      decoration: BoxDecoration(
+                        color: backgroundColor,
+                        border: Border(
+                          right: mainBorderSide,
+                          bottom: (index == 5) ? BorderSide.none : mainBorderSide,
+                        ),
+                      ),
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          (state.is24Hour) ? night24Hours[index] : night12Hours[index],
+                          style: TextStyle(
+                            fontSize: 22,
+                            fontFamily: 'Public Sans',
+                            letterSpacing: 2,
+                            fontVariations: [
+                              FontVariation('wght', 300),
+                            ],
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
-              );
-            },
-          ),
+                  );
+                },
+              ),
+            );
+          }
         ),
         BlocBuilder<HalfHourColorCellsCubit, HalfHourColorCells>(
           builder: (context, state) {
@@ -77,6 +84,7 @@ class _NightScreenState extends State<NightScreen> {
                       }
                     }
                   }
+                  final settingState = context.watch<SettingCubit>().state;
                   return Align(
                     alignment: Alignment.centerLeft,
                     child: Container(
@@ -94,7 +102,7 @@ class _NightScreenState extends State<NightScreen> {
                         ),
                       ),
                       child: GestureDetector(
-                        child: (index.isEven)
+                        child: (settingState.showMinute) ? (index.isEven)
                             ? Align(
                           alignment: Alignment.center,
                           child: Text(
@@ -122,7 +130,7 @@ class _NightScreenState extends State<NightScreen> {
                                     ? backgroundColor
                                     : blackColor),
                           ),
-                        ),
+                        ) : null,
                         behavior: HitTestBehavior.opaque,
                         onVerticalDragStart: (details) {
                           startIndex = index;
@@ -138,7 +146,6 @@ class _NightScreenState extends State<NightScreen> {
 
                           return showDialog(
                             context: context,
-                            barrierDismissible: false,
                             barrierColor: Colors.transparent,
                             builder: (context) {
                               final dialogState = context

@@ -16,6 +16,7 @@ import 'package:mecore/modules/screens/today/time/afternoon_screen.dart';
 import 'package:mecore/modules/screens/today/widgets/body_header.dart';
 import 'package:mecore/modules/screens/today/time/evening_screen.dart';
 import 'package:mecore/modules/screens/today/time/morning_screen.dart';
+import 'package:mecore/widgets/containers/weather_icon_container.dart';
 
 class TodayScreenBody extends StatefulWidget {
   const TodayScreenBody({super.key});
@@ -128,7 +129,7 @@ class _TodayScreenBodyState extends State<TodayScreenBody> {
               physics: ClampingScrollPhysics(),
               child: SizedBox(
                 width: screenWidth(context),
-                height: screenHeight(context) - TodayScreen.todayScreenPadding - appbarLength(context) * 2 - 2,
+                height: todayScreenBodyHeight(context),
                 child: LindiStickerWidget(
                   controller: lindiController,
                   child: Column(

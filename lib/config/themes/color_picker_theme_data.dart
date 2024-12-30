@@ -2,35 +2,24 @@ import 'package:flutter/material.dart';
 
 Map<String, Color> whiteColors = {
   'white': Color(0xffFFFFFF),
-  'bright silver': Color(0xffF8F8F8),
-  'light silver': Color(0xffF5F5F5),
-  'soft silver': Color(0xffF1F1F1),
-  'standard silver': Color(0xffEEEEEE),
-  'deep silver': Color(0xffE7E7E7),
-  'rich silver': Color(0xffE0E0E0),
-  'dark silver': Color(0xffDBDBDB),
+  'bright silver': Color(0xffEFEFEF),
+  'light silver': Color(0xffE2E2E2),
+  'soft silver': Color(0xffD5D5D5),
+  'standard silver': Color(0xffC7C7C7),
+  'deep silver': Color(0xffA7A7A7),
+  'rich silver': Color(0xff979797),
+  'dark silver': Color(0xff808080),
 };
 
-Map<String, Color> vividRedColors = {
-  'red': Color(0xffFF3E3E),
-  'bright red': Color(0xffFFD2D2),
-  'light red': Color(0xffFFC8C8),
-  'soft red': Color(0xffFFC0C0),
-  'standard red': Color(0xffFFB8B8),
-  'deep red': Color(0xffFFB0B0),
-  'rich red': Color(0xffFF9696),
-  'dark red': Color(0xffFF4949),
-};
-
-Map<String, Color> mutedRedColors = {
-  'red': Color(0xffC90000),
-  'bright red': Color(0xffDC4D4D),
-  'light red': Color(0xffD44646),
-  'soft red': Color(0xffBA2525),
-  'standard red': Color(0xffAF0000),
-  'deep red': Color(0xffBD4747),
-  'rich red': Color(0xffBA3333),
-  'dark red': Color(0xff8E1F1F),
+Map<String, Color> redColors = {
+  'red': Color(0xffFF4343),
+  'bright red': Color(0xffFFD4D4),
+  'light red': Color(0xffFFC5C5),
+  'soft red': Color(0xffFFB7B7),
+  'standard red': Color(0xffFFA7A7),
+  'deep red': Color(0xffFF9D9D),
+  'rich red': Color(0xffFF8686),
+  'dark red': Color(0xffFF7575),
 };
 
 Map<String, Color> orangeColors = {
@@ -146,8 +135,7 @@ Map<String, Color> pinkColors = {
 List<Map<String, Color>> colorPickerColors = [
   whiteColors,
   pinkColors,
-  vividRedColors,
-  mutedRedColors,
+  redColors,
   orangeColors,
   yellowColors,
   limeGreenColors,

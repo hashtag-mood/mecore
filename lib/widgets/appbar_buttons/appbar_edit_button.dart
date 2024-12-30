@@ -31,7 +31,7 @@ class _AppbarEditButtonState extends State<AppbarEditButton> {
           //icon: Icon(CupertinoIcons.text_cursor),
           // icon: Icon(CupertinoIcons.textformat_alt),
           icon: Icon(CupertinoIcons.lock),
-          selectedIcon: Icon(CupertinoIcons.lock_open),
+          selectedIcon: Icon(CupertinoIcons.checkmark),
           iconSize: appbarLength(context) * 0.55,
         ),
       ),

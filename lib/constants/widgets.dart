@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mecore/constants/colors.dart';
 import 'package:mecore/constants/lengths.dart';
@@ -14,4 +15,22 @@ TextStyle dateTextStyle(BuildContext context) {
       fontFamily: 'Unbounded SemiBold',
       fontSize: appbarLength(context) * 0.38,
       color: blackColor);
+}
+
+Widget customCupertinoIndicator(BuildContext context) {
+  return Center(
+    child: Container(
+      width: appbarLength(context) * 1.2,
+      height: appbarLength(context) * 1.2,
+      decoration: BoxDecoration(
+        border: Border.all(),
+        color: backgroundColor,
+      ),
+      child: CupertinoActivityIndicator(
+        animating: true,
+        color: blackColor,
+        radius: 20,
+      ),
+    ),
+  );
 }

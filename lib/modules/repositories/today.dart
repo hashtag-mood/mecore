@@ -26,12 +26,8 @@ class Today {
   morning, afternoon, evening, night 각각 12개의 textfield, color cell
    */
 
-  Future<void> create(BuildContext context) async {
-    final todayCollection = db.collection('today');
-    final docRef = todayCollection.doc();
-    final docID = docRef.id;
-
-    await docRef.set({
+  static Future<void> setDocRef() async {
+    await todayDocRef.set({
       'dateTime' : null,
       'musicText' : null,
       'commentText' : null,
@@ -44,20 +40,9 @@ class Today {
       'eveningText' : null,
       'nightText' : null,
     });
+    }
 
-    Map<String,dynamic> createDatas = {
-      'musicText' : MusicWidget.musicText,
-      'commentText' : BodyHeader.commentText,
-      'morningColors' : morningColors,
-      'afternoonColors' : afternoonColors,
-      'eveningColors' : eveningColors,
-      'nightColors' : nightColors,
-      'morningText' : morningText,
-      'afternoonText' : afternoonText,
-      'eveningText' : eveningText,
-      'nightText' : nightText,
-    };
+  static Future<void> createMusicText(String musicText) async {
   }
-
 
 }
