@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mecore/constants/colors.dart';
 import 'package:mecore/modules/models/half_hour_color_cells.dart';
 
+//todo: 필요없음. 확인 후 삭제
 class HalfHourColorCellsCubit extends Cubit<HalfHourColorCells> {
   HalfHourColorCellsCubit():super(HalfHourColorCells(morningColor: backgroundColor, afternoonColor: backgroundColor, eveningColor: backgroundColor, nightColor: backgroundColor));
 

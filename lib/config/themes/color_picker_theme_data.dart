@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Map<String, Color> whiteColors = {
+const Map<String, Color> whiteColors = {
   'white': Color(0xffFFFFFF),
   'bright silver': Color(0xffEFEFEF),
   'light silver': Color(0xffE2E2E2),
@@ -11,7 +11,7 @@ Map<String, Color> whiteColors = {
   'dark silver': Color(0xff808080),
 };
 
-Map<String, Color> redColors = {
+const Map<String, Color> redColors = {
   'red': Color(0xffFF4343),
   'bright red': Color(0xffFFD4D4),
   'light red': Color(0xffFFC5C5),
@@ -22,7 +22,7 @@ Map<String, Color> redColors = {
   'dark red': Color(0xffFF7575),
 };
 
-Map<String, Color> orangeColors = {
+const Map<String, Color> orangeColors = {
   'orange': Color(0xffFF7B00),
   'bright orange': Color(0xffFFDCB4),
   'light orange': Color(0xffFFD7A9),
@@ -33,7 +33,7 @@ Map<String, Color> orangeColors = {
   'dark orange': Color(0xffFF8A1C),
 };
 
-Map<String, Color> yellowColors = {
+const Map<String, Color> yellowColors = {
   'yellow': Color(0xffFFE100),
   'bright yellow': Color(0xffFFF8BF),
   'light yellow': Color(0xffFFF5A7),
@@ -44,7 +44,7 @@ Map<String, Color> yellowColors = {
   'dark yellow': Color(0xffB48100),
 };
 
-Map<String, Color> limeGreenColors = {
+const Map<String, Color> limeGreenColors = {
   'green': Color(0xffE1FF80),
   'bright green': Color(0xffEBFFBD),
   'light green': Color(0xffDBFF8D),
@@ -55,7 +55,7 @@ Map<String, Color> limeGreenColors = {
   'dark green': Color(0xff7BB400),
 };
 
-Map<String, Color> deepGreenColors = {
+const Map<String, Color> deepGreenColors = {
   'green': Color(0xff208922),
   'bright green': Color(0xffBCE0A7),
   'light green': Color(0xffA2CE86),
@@ -66,7 +66,7 @@ Map<String, Color> deepGreenColors = {
   'dark green': Color(0xff235A00),
 };
 
-Map<String, Color> cyanColors = {
+const Map<String, Color> cyanColors = {
   'cyan': Color(0xff7AECC2),
   'bright cyan': Color(0xffCEF6E8),
   'light cyan': Color(0xffCBFFEC),
@@ -77,7 +77,7 @@ Map<String, Color> cyanColors = {
   'dark cyan': Color(0xff40BAAD),
 };
 
-Map<String, Color> skyBlueColors = {
+const Map<String, Color> skyBlueColors = {
   'blue': Color(0xff5BDBFF),
   'bright blue': Color(0xffE4FAFF),
   'light blue': Color(0xffDDF9FF),
@@ -88,7 +88,7 @@ Map<String, Color> skyBlueColors = {
   'dark blue': Color(0xff00ADF1),
 };
 
-Map<String, Color> lightBlueColors = {
+const Map<String, Color> lightBlueColors = {
   'blue': Color(0xff87C5FF),
   'bright blue': Color(0xffE3F1FF),
   'light blue': Color(0xffD4EAFF),
@@ -99,7 +99,7 @@ Map<String, Color> lightBlueColors = {
   'dark blue': Color(0xff0988FF),
 };
 
-Map<String, Color> deepBlueColors = {
+const Map<String, Color> deepBlueColors = {
   'blue': Color(0xff4988FF),
   'bright blue': Color(0xffC8DBFF),
   'light blue': Color(0xffB0CAFB),
@@ -110,7 +110,7 @@ Map<String, Color> deepBlueColors = {
   'dark blue': Color(0xff001DAC),
 };
 
-Map<String, Color> purpleColors = {
+const Map<String, Color> purpleColors = {
   'purple': Color(0xffC78CFF),
   'bright purple': Color(0xffF4ECFF),
   'light purple': Color(0xffEAD7FF),
@@ -121,7 +121,7 @@ Map<String, Color> purpleColors = {
   'dark purple': Color(0xff7F1ADE),
 };
 
-Map<String, Color> pinkColors = {
+const Map<String, Color> pinkColors = {
   'pink': Color(0xffFF5197),
   'bright pink': Color(0xffFFE4EF),
   'light pink': Color(0xffF5D9E4),
@@ -132,7 +132,7 @@ Map<String, Color> pinkColors = {
   'dark pink': Color(0xffFF76AD),
 };
 
-List<Map<String, Color>> colorPickerColors = [
+const List<Map<String, Color>> colorPickerColors = [
   whiteColors,
   pinkColors,
   redColors,
