@@ -23,8 +23,8 @@ class WheelChooserWidget extends StatelessWidget {
         onValueChanged: (value) {
           context.read<WheelChooserCubit>().updateValue(value: value);
         },
-        isInfinite: true,
-        itemSize: 200,
+        isInfinite: false,
+        itemSize: 270, //200
         unSelectTextStyle: TextStyle(color: textSilverColor, fontSize: 10, fontFamily: 'Unbounded SemiBold'),
         selectTextStyle: TextStyle(color: blackColor, fontSize: 10, fontFamily: 'Unbounded SemiBold'),
         // datas: ['5', '6', '7', '8', '9', '10', '11', '12', '1', '2', '3', '4',

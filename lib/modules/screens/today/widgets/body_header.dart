@@ -1,6 +1,7 @@
 import 'package:animated_music_indicator/animated_music_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mecore/config/themes/color_picker_theme_data.dart';
 import 'package:mecore/constants/colors.dart';
 import 'package:mecore/constants/lengths.dart';
 import 'package:mecore/constants/widgets.dart';

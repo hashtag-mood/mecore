@@ -49,7 +49,15 @@ Widget hourTextCells(BuildContext context, List list) {
           alignment: Alignment.centerLeft,
           child: Container(
             width: appbarLength(context) * 4 / 3,
-            height: todayScreenTimeWidgetHeight(context),
+            height:
+                context
+                    .read<HalfHourTextFieldCubit>()
+                    .state
+                    .textFieldHeightList[index * 2] +
+                context
+                    .read<HalfHourTextFieldCubit>()
+                    .state
+                    .textFieldHeightList[index * 2 + 1],
             decoration: BoxDecoration(
               color: backgroundColor,
               border: Border(
@@ -80,65 +88,88 @@ Widget hourTextCells(BuildContext context, List list) {
 
 Widget halfHourTextField(
     {required BuildContext context,
-      required List<TextEditingController> textEditingControllerList}) {
+    required List<TextEditingController> textEditingControllerList}) {
   return Stack(
     children: [
       Column(
-        children: List.generate(12 + context.read<HalfHourTextFieldCubit>().state.additionalLines, (index) {
-          return Container(
-            width: appbarLength(context) * 5,
-            height: todayScreenTimeWidgetHeight(context) / 2,
-            decoration: BoxDecoration(
-              color: backgroundColor,
-              border: Border(
-                bottom: (index == (12 + context.read<HalfHourTextFieldCubit>().state.additionalLines) - 1) ? BorderSide.none : mainBorderSide,
+        children: List.generate(
+          12 + context.read<HalfHourTextFieldCubit>().state.additionalLines,
+          (index) {
+            return Container(
+              width: appbarLength(context) * 5,
+              height: todayScreenTimeWidgetHeight(context) / 2,
+              decoration: BoxDecoration(
+                color: backgroundColor,
+                border: Border(
+                  bottom: (index ==
+                          (12 +
+                                  context
+                                      .read<HalfHourTextFieldCubit>()
+                                      .state
+                                      .additionalLines) -
+                              1)
+                      ? BorderSide.none
+                      : mainBorderSide,
+                ),
               ),
-            ),
-          );
-        },),
+            );
+          },
+        ),
       ),
       Column(
         children: List.generate(
           12,
           (index) {
-                return BlocBuilder<HalfHourTextFieldCubit, HalfHourTextField>(
-                  builder: (context, state) {
-                    return Align(
-                      alignment: Alignment.centerLeft,
-                      child: SizedBox(
-                        height: state.textFieldHeightList[index],
-                        width: appbarLength(context) * 5,
-                        child: CupertinoTextField(
-                          controller: textEditingControllerList[index],
-                          textAlignVertical: TextAlignVertical.center,
-                          padding: EdgeInsets.only(left: 8),
-                          cursorHeight: fontSize,
-                          style: TextStyle(
-                            color: blackColor,
-                            fontSize: fontSize,
-                            height: todayScreenTimeWidgetHeight(context) / 2 / fontSize,
-                            leadingDistribution: TextLeadingDistribution.even,
-                          ),
-                          onChanged: (value) {
-                            final lines = '\n'.allMatches(value).length + 1;
-                            context.read<HalfHourTextFieldCubit>().updateLinesList(index, lines);
-                            context.read<HalfHourTextFieldCubit>().getAdditionalLines(index, lines);
-                            context.read<HalfHourTextFieldCubit>().updateTextFieldHeight(index, (todayScreenTimeWidgetHeight(context) / 2) * lines);
-                            context.read<HalfHourTextFieldCubit>().addTextFieldHeight();
-                          },
-
-                          maxLines: null,
-                          decoration: BoxDecoration(
-                            color: Colors.transparent,
-                            border: Border(
-                              bottom: index == 11 ? BorderSide.none : mainBorderSide,
-                            ),
-                          ),
-                        ),
+            return BlocBuilder<HalfHourTextFieldCubit, HalfHourTextField>(
+                builder: (context, state) {
+              return Align(
+                alignment: Alignment.centerLeft,
+                child: SizedBox(
+                  height: state.textFieldHeightList[index],
+                  width: appbarLength(context) * 5,
+                  child: CupertinoTextField(
+                    scrollPhysics: NeverScrollableScrollPhysics(),
+                    controller: textEditingControllerList[index],
+                    textAlignVertical: TextAlignVertical.center,
+                    padding: EdgeInsets.only(left: 8),
+                    cursorHeight: textFontSize,
+                    style: TextStyle(
+                      color: blackColor,
+                      fontSize: textFontSize,
+                      height: todayScreenTimeWidgetHeight(context) /
+                          2 /
+                          textFontSize,
+                      leadingDistribution: TextLeadingDistribution.even,
+                    ),
+                    onChanged: (value) {
+                      final lines = '\n'.allMatches(value).length + 1;
+                      context
+                          .read<HalfHourTextFieldCubit>()
+                          .updateLinesList(index, lines);
+                      context
+                          .read<HalfHourTextFieldCubit>()
+                          .getAdditionalLines(index, lines);
+                      context
+                          .read<HalfHourTextFieldCubit>()
+                          .updateTextFieldHeight(
+                              index,
+                              (todayScreenTimeWidgetHeight(context) / 2) *
+                                  lines);
+                      context
+                          .read<HalfHourTextFieldCubit>()
+                          .addTextFieldHeight();
+                    },
+                    maxLines: null,
+                    decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      border: Border(
+                        bottom: index == 11 ? BorderSide.none : mainBorderSide,
                       ),
-                    );
-                  }
-                );
+                    ),
+                  ),
+                ),
+              );
+            });
           },
         ),
       ),
@@ -173,11 +204,11 @@ Widget todayTextField(
         child: CupertinoTextField.borderless(
           controller: textEditingController,
           padding: EdgeInsets.only(left: 8),
-          cursorHeight: fontSize,
+          cursorHeight: textFontSize,
           style: TextStyle(
             color: blackColor,
-            fontSize: fontSize,
-            height: todayScreenTimeWidgetHeight(context) / 2 / fontSize,
+            fontSize: textFontSize,
+            height: todayScreenTimeWidgetHeight(context) / 2 / textFontSize,
             leadingDistribution: TextLeadingDistribution.even,
           ),
           inputFormatters: [
@@ -196,8 +227,9 @@ Widget todayTextField(
                 final textSpan = TextSpan(
                   text: newValue.text,
                   style: TextStyle(
-                    fontSize: fontSize,
-                    height: todayScreenTimeWidgetHeight(context) / 2 / fontSize,
+                    fontSize: textFontSize,
+                    height:
+                        todayScreenTimeWidgetHeight(context) / 2 / textFontSize,
                     leadingDistribution: TextLeadingDistribution.even,
                   ),
                 );

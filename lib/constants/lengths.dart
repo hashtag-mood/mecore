@@ -33,4 +33,6 @@ double halfHourColorCellHeight(BuildContext context) {
   return appbarLength(context) * 1.6 * 1 / 2;
 }
 
-double fontSize = 19;
+double textFontSize = 19;
+
+double navigationIconSize = 23;

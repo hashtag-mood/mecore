@@ -129,18 +129,6 @@ class _TodayScreenBodyState extends State<TodayScreenBody> {
             }
           }
 
-          // double addTextFieldHeight() {
-          //   final textFieldHeightList = context.read<HalfHourTextFieldCubit>().state.textFieldHeightList;
-          //   if (textFieldHeightList.any((element) => element != TodayScreenBody.textFieldHeight,)) {
-          //     final addList = textFieldHeightList.where((element) => element != TodayScreenBody.textFieldHeight,).toList();
-          //     final additionalHeight = addList.map((e) => e - TodayScreenBody.textFieldHeight,).reduce((value, element) => value + element,);
-          //     return additionalHeight;
-          //   }
-          //   return 0;
-          // }
-          //
-          // num additionalHeight = addTextFieldHeight();
-
           return ClipRect(
             child: SingleChildScrollView(
               physics: ClampingScrollPhysics(),

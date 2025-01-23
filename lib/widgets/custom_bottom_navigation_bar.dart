@@ -1,6 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:iconify_flutter/iconify_flutter.dart';
+import 'package:iconify_flutter/icons/game_icons.dart';
+import 'package:iconify_flutter/icons/ic.dart';
+import 'package:iconify_flutter/icons/ph.dart';
+import 'package:iconify_flutter/icons/ri.dart';
+import 'package:colorful_iconify_flutter/icons/emojione.dart';
+import 'package:colorful_iconify_flutter/icons/noto.dart';
+import 'package:colorful_iconify_flutter/icons/fxemoji.dart';
+import 'package:iconify_flutter/icons/wpf.dart';
+import 'package:iconify_flutter/icons/raphael.dart';
+import 'package:iconify_flutter/icons/gis.dart';
+import 'package:iconify_flutter/icons/clarity.dart';
+
+import 'package:iconify_flutter/icons/uiw.dart';
+
+import 'package:iconify_flutter/icons/ion.dart';
+import 'package:iconify_flutter/icons/vaadin.dart';
+import 'package:iconify_flutter/icons/foundation.dart';
+import 'package:intl/intl.dart';
+import 'package:iconify_flutter/icons/emojione_monotone.dart';
+
 import 'package:mecore/constants/colors.dart';
 import 'package:mecore/constants/lengths.dart';
 import 'package:mecore/constants/widgets.dart';
@@ -35,7 +56,9 @@ class CustomBottomNavigationBar extends StatelessWidget {
           labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
           destinations: [
             NavigationDestination(
-              icon: Icon(CupertinoIcons.compass, size: 30),
+              icon: Text('ೀ⋆｡🌷', style: TextStyle(fontSize: navigationIconSize),),
+
+              // icon: Text('₊˚ 🦢・₊✧', style: TextStyle(fontSize: navigationIconSize),),
               label: 'TODAY',
             ),
             // NavigationDestination(
@@ -44,11 +67,15 @@ class CustomBottomNavigationBar extends StatelessWidget {
             //   selectedIcon: Icon(CupertinoIcons.flag_fill),
             // ),
             NavigationDestination(
-              icon: Icon(CupertinoIcons.helm, size: 30),
+              icon: Text(
+                '‧₊˚🍮‧₊˚', style: TextStyle(fontSize: navigationIconSize),),
+
+              //icon: Text('｡˚🐈‍⬛.𖥔 ݁ ˖', style: TextStyle(fontSize: navigationIconSize),),
               label: 'JOURNAL',
             ),
             NavigationDestination(
-              icon: Icon(CupertinoIcons.settings, size: 30),
+              icon: Text('🎸⋆⭒˚｡⋆', style: TextStyle(fontSize: navigationIconSize),),
+              //icon: Text('★🎸🎧⋆｡', style: TextStyle(fontSize: navigationIconSize),),
               label: 'SETTING',
             ),
           ],

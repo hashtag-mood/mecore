@@ -21,6 +21,7 @@ class OnboardingScreen extends StatefulWidget {
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
   bool isLoading = false;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -31,23 +32,42 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Container(
+                  width: screenWidth(context),
+                  height: 100,
+                  decoration: BoxDecoration(
+                    color: backgroundColor,
+                    border: Border(top: mainBorderSide),
+                  ),
+                ),
                 Image(
                   image: AssetImage('assets/image/logo_wobg_black.png'),
-                  width: 100,
+                  width: 200,
+                ),
+                Container(
+                  width: screenWidth(context),
+                  height: 100,
+                  decoration: BoxDecoration(
+                    color: backgroundColor,
+                  ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    if(!Platform.isAndroid && !Platform.isWindows) Container(
-                      width: appbarLength(context) * 1.2,
-                      height: appbarLength(context) * 1.2,
-                      decoration: BoxDecoration(
-                        border: Border.all(),
-                        color: backgroundColor,
-                      ),
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: TextButton(
+                    if (!Platform.isAndroid && !Platform.isWindows)
+                      Container(
+                        width: screenWidth(context) / 3,
+                        height: appbarLength(context) * 1.2,
+                        decoration: BoxDecoration(
+                          border: Border(
+                              right: mainBorderSide,
+                              top: mainBorderSide,
+                              bottom: mainBorderSide),
+                          color: backgroundColor,
+                        ),
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: TextButton(
                             style: ButtonStyle(
                               shape: WidgetStatePropertyAll(
                                 RoundedRectangleBorder(
@@ -74,14 +94,25 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 });
                               }
                             },
-                            child: Image(image: AssetImage('assets/image/apple_logo_512.png'),),),
+                            child: Container(
+                              padding: EdgeInsets.all(5),
+                                child: Image(
+                              image:
+                                  AssetImage('assets/image/apple_logo_512.png'),
+                            )),
+                          ),
+                        ),
                       ),
-                    ),
                     Container(
-                      width: appbarLength(context) * 1.2,
+                      width: (!Platform.isAndroid && !Platform.isWindows)
+                          ? screenWidth(context) / 3
+                          : screenWidth(context) / 2,
                       height: appbarLength(context) * 1.2,
                       decoration: BoxDecoration(
-                        border: Border.all(),
+                        border: Border(
+                            right: mainBorderSide,
+                            top: mainBorderSide,
+                            bottom: mainBorderSide),
                         color: backgroundColor,
                       ),
                       child: Align(
@@ -93,7 +124,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                   borderRadius: BorderRadius.zero),
                             ),
                             overlayColor:
-                            WidgetStatePropertyAll(Colors.transparent),
+                                WidgetStatePropertyAll(Colors.transparent),
                           ),
                           onPressed: () async {
                             setState(() {
@@ -113,14 +144,24 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               });
                             }
                           },
-                          child: Image(image: AssetImage('assets/image/google_logo_512.png'),),),
+                          child: Container(
+                            padding: EdgeInsets.all(5),
+                            child: Image(
+                              image:
+                                  AssetImage('assets/image/google_logo_512.png'),
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                     Container(
-                      width: appbarLength(context) * 1.2,
+                      width: (!Platform.isAndroid && !Platform.isWindows)
+                          ? screenWidth(context) / 3
+                          : screenWidth(context) / 2,
                       height: appbarLength(context) * 1.2,
                       decoration: BoxDecoration(
-                        border: Border.all(),
+                        border:
+                            Border(top: mainBorderSide, bottom: mainBorderSide),
                         color: backgroundColor,
                       ),
                       child: Align(
@@ -152,8 +193,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               });
                             }
                           },
-                          child: Image(
-                            image: AssetImage('assets/image/x_logo_512.png'),
+                          child: Container(
+                            padding: EdgeInsets.all(5),
+
+                            child: Image(
+                              image: AssetImage('assets/image/x_logo_512.png'),
+                            ),
                           ),
                         ),
                       ),
