@@ -74,7 +74,7 @@ Widget hourTextCells(BuildContext context, List list) {
                   fontFamily: 'Public Sans',
                   letterSpacing: 2,
                   fontVariations: [
-                    FontVariation('wght', 300),
+                    FontVariation('wght', 200),
                   ],
                 ),
               ),

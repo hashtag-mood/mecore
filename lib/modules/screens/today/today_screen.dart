@@ -8,6 +8,7 @@ import 'package:mecore/constants/colors.dart';
 import 'package:mecore/constants/lengths.dart';
 import 'package:mecore/modules/repositories/today.dart';
 import 'package:mecore/modules/repositories/uid.dart';
+import 'package:mecore/modules/screens/today/widgets/new_today_body.dart';
 import 'package:mecore/widgets/appbar/today_screen_appbar.dart';
 import 'package:mecore/modules/screens/today/widgets/today_screen_body.dart';
 import 'package:iconify_flutter/icons/raphael.dart';
@@ -45,7 +46,8 @@ class _TodayScreenState extends State<TodayScreen> {
             flexibleSpace: TodayScreenAppbar(),
           ),
         ),
-        body: TodayScreenBody(),
+        body: NewTodayBody(),
+        //body: TodayScreenBody(),
         floatingActionButton: GestureDetector(
           onTap: () {
 

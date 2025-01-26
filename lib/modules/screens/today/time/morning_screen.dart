@@ -138,7 +138,7 @@ class _MorningScreenState extends State<MorningScreen> {
         Row(
           children: [
             hourTextCells(context, morningHour),
-            /*
+
             Column(
               children: List.generate(12, (index) {
                 final settingState = context.watch<SettingCubit>().state;
@@ -183,7 +183,8 @@ class _MorningScreenState extends State<MorningScreen> {
                 );
               },),
             ),
-            */
+
+            /*
             Column(
               children: List.generate(
                 12,
@@ -197,34 +198,45 @@ class _MorningScreenState extends State<MorningScreen> {
                         decoration: BoxDecoration(
                           color: backgroundColor,
                           border: (context
-                      .read<HalfHourTextFieldCubit>()
-                      .state.additionalHeight == 0) ? Border(
-                            bottom: (index == 11) ? BorderSide.none : mainBorderSide,
-                            right: mainBorderSide,
-                          ) : Border(right: mainBorderSide, bottom: (index == 11) ? BorderSide.none : mainBorderSide,),
+                                      .read<HalfHourTextFieldCubit>()
+                                      .state
+                                      .additionalHeight ==
+                                  0)
+                              ? Border(
+                                  bottom: (index == 11)
+                                      ? BorderSide.none
+                                      : mainBorderSide,
+                                  right: mainBorderSide,
+                                )
+                              : Border(
+                                  right: mainBorderSide,
+                                  bottom: (index == 11)
+                                      ? BorderSide.none
+                                      : mainBorderSide,
+                                ),
                         ),
                         child: (settingState.showMinute)
                             ? (index.isEven)
-                            ? Align(
-                          alignment: Alignment.center,
-                          child: Text(
-                            '00',
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: getTextColor(index),
-                            ),
-                          ),
-                        )
-                            : Align(
-                          alignment: Alignment.center,
-                          child: Text(
-                            '30',
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: getTextColor(index),
-                            ),
-                          ),
-                        )
+                                ? Align(
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      '00',
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        color: getTextColor(index),
+                                      ),
+                                    ),
+                                  )
+                                : Align(
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      '30',
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        color: getTextColor(index),
+                                      ),
+                                    ),
+                                  )
                             : null,
                       ),
                       Container(
@@ -237,11 +249,17 @@ class _MorningScreenState extends State<MorningScreen> {
                         decoration: BoxDecoration(
                           color: backgroundColor,
                           border: (context
-                              .read<HalfHourTextFieldCubit>()
-                      .state.additionalHeight != 0) ? Border(
-                            bottom: (index == 11) ? BorderSide.none : mainBorderSide,
-                            right: mainBorderSide,
-                          ) : null,
+                                      .read<HalfHourTextFieldCubit>()
+                                      .state
+                                      .additionalHeight !=
+                                  0)
+                              ? Border(
+                                  bottom: (index == 11)
+                                      ? BorderSide.none
+                                      : mainBorderSide,
+                                  right: mainBorderSide,
+                                )
+                              : null,
                         ),
                       ),
                     ],
@@ -249,6 +267,7 @@ class _MorningScreenState extends State<MorningScreen> {
                 },
               ),
             ),
+            */
             /*
             Column(
               children: List.generate(
